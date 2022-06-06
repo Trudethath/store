@@ -1,4 +1,6 @@
 import React, { createContext, useState } from "react"
+import maleFootwear from "../src/images/maleFootwear.png"
+import femaleFootwear from "../src/images/femaleFootwear.png"
 
 export const AppContext = createContext()
 
@@ -7,6 +9,7 @@ const AppProvider = ({ children }) => {
     {
       id: 0,
       model: "564 Donkey",
+      img: maleFootwear,
       price: 65,
       rating: 3,
       sex: "male",
@@ -19,6 +22,7 @@ const AppProvider = ({ children }) => {
     {
       id: 1,
       model: "613 Donkey",
+      img: maleFootwear,
       price: 120,
       rating: 4,
       gender: "male",
@@ -31,6 +35,7 @@ const AppProvider = ({ children }) => {
     {
       id: 2,
       model: "702 Donkey",
+      img: maleFootwear,
       price: 116,
       rating: 4,
       gender: "male",
@@ -43,6 +48,7 @@ const AppProvider = ({ children }) => {
     {
       id: 3,
       model: "755 Donkey",
+      img: maleFootwear,
       price: 88,
       rating: 2,
       gender: "male",
@@ -55,10 +61,11 @@ const AppProvider = ({ children }) => {
     {
       id: 4,
       model: "533 Donkey",
+      img: maleFootwear,
       price: 223,
       rating: 5,
       gender: "male",
-      release_year: 2020,
+      release_year: 2022,
       onSale: true,
       favorite: false,
       inCart: false,
@@ -67,6 +74,7 @@ const AppProvider = ({ children }) => {
     {
       id: 5,
       model: "599 Donkey",
+      img: maleFootwear,
       price: 255,
       rating: 0,
       gender: "male",
@@ -79,6 +87,7 @@ const AppProvider = ({ children }) => {
     {
       id: 6,
       model: "613 Donkey",
+      img: maleFootwear,
       price: 300,
       rating: 0,
       gender: "male",
@@ -91,6 +100,7 @@ const AppProvider = ({ children }) => {
     {
       id: 7,
       model: "677 Donkey",
+      img: maleFootwear,
       price: 100,
       rating: 4,
       gender: "male",
@@ -103,6 +113,7 @@ const AppProvider = ({ children }) => {
     {
       id: 8,
       model: "688 Donkey",
+      img: maleFootwear,
       price: 100,
       rating: 4,
       gender: "male",
@@ -115,6 +126,7 @@ const AppProvider = ({ children }) => {
     {
       id: 9,
       model: "601 Donkey",
+      img: maleFootwear,
       price: 140,
       rating: 5,
       gender: "male",
@@ -127,6 +139,7 @@ const AppProvider = ({ children }) => {
     {
       id: 10,
       model: "708 Donkey",
+      img: maleFootwear,
       price: 140,
       rating: 5,
       gender: "male",
@@ -139,6 +152,7 @@ const AppProvider = ({ children }) => {
     {
       id: 11,
       model: "223 Donkey",
+      img: femaleFootwear,
       price: 65,
       rating: 2,
       gender: "female",
@@ -151,6 +165,7 @@ const AppProvider = ({ children }) => {
     {
       id: 12,
       model: "244 Donkey",
+      img: femaleFootwear,
       price: 100,
       rating: 5,
       gender: "female",
@@ -163,6 +178,7 @@ const AppProvider = ({ children }) => {
     {
       id: 13,
       model: "288 Donkey",
+      img: femaleFootwear,
       price: 100,
       rating: 4,
       gender: "female",
@@ -175,6 +191,7 @@ const AppProvider = ({ children }) => {
     {
       id: 14,
       model: "377 Donkey",
+      img: femaleFootwear,
       price: 150,
       rating: 4,
       gender: "female",
@@ -187,6 +204,7 @@ const AppProvider = ({ children }) => {
     {
       id: 15,
       model: "344 Donkey",
+      img: femaleFootwear,
       price: 170,
       rating: 5,
       gender: "female",
@@ -199,10 +217,11 @@ const AppProvider = ({ children }) => {
     {
       id: 16,
       model: "401 Donkey",
+      img: femaleFootwear,
       price: 225,
       rating: 0,
       gender: "female",
-      release_year: 2019,
+      release_year: 2022,
       onSale: false,
       favorite: false,
       inCart: false,
@@ -211,10 +230,11 @@ const AppProvider = ({ children }) => {
     {
       id: 17,
       model: "444 Donkey",
+      img: femaleFootwear,
       price: 220,
       rating: 4,
       gender: "female",
-      release_year: 2019,
+      release_year: 2022,
       onSale: true,
       favorite: false,
       inCart: false,
@@ -223,6 +243,7 @@ const AppProvider = ({ children }) => {
     {
       id: 18,
       model: "222 Donkey",
+      img: femaleFootwear,
       price: 300,
       rating: 5,
       gender: "female",
@@ -235,6 +256,7 @@ const AppProvider = ({ children }) => {
     {
       id: 19,
       model: "273 Donkey",
+      img: femaleFootwear,
       price: 180,
       rating: 3,
       gender: "female",
@@ -247,6 +269,7 @@ const AppProvider = ({ children }) => {
     {
       id: 20,
       model: "308 Donkey",
+      img: femaleFootwear,
       price: 180,
       rating: 3,
       gender: "female",
