@@ -1,23 +1,23 @@
 const MenuItems = [
   {
     id: 0,
-    title: "Nowości",
-    url: "#",
+    title: "New",
+    url: "new",
   },
   {
     id: 1,
-    title: "Wyprzedaż",
-    url: "#",
+    title: "Sale",
+    url: "sale",
   },
   {
     id: 2,
-    title: "Męskie",
-    url: "#",
+    title: "Men",
+    url: "men",
   },
   {
     id: 3,
-    title: "Damskie",
-    url: "#",
+    title: "Women",
+    url: "women",
   },
 ]
 

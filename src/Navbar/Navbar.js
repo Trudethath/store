@@ -1,8 +1,12 @@
+import React from "react"
+import { Link } from "react-router-dom"
+
+import MenuItems from "./MenuItems"
+import MenuItem from "./MenuItem"
+
 import { GiDonkey } from "react-icons/gi"
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai"
 import { BsCart2 } from "react-icons/bs"
-import MenuItems from "./MenuItems"
-import MenuItem from "./MenuItem"
 
 const menuItems = MenuItems.map((item) => {
   return <MenuItem key={item.id} item={item} />
@@ -10,26 +14,26 @@ const menuItems = MenuItems.map((item) => {
 
 const Navbar = () => {
   return (
-    <div className='navbar-container'>
+    <nav className='navbar-container'>
       <h1>
-        <a href='#' className='navbar-icon'>
+        <Link to='/' className='navbar-icon'>
           <GiDonkey />
-        </a>
+        </Link>
       </h1>
       <ul className='menu-items'>{menuItems}</ul>
       <div className='user-side'>
-        <a href='#'>
+        <Link to='signIn'>
           <AiOutlineUser />
           Zaloguj się
-        </a>
-        <a href='#'>
+        </Link>
+        <Link to='favorite'>
           <AiOutlineHeart />
-        </a>
-        <a href='#'>
+        </Link>
+        <Link to='cart'>
           <BsCart2 />
-        </a>
+        </Link>
       </div>
-    </div>
+    </nav>
   )
 }
 

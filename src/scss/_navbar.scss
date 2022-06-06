@@ -33,11 +33,15 @@
     a {
       margin: 0 5px;
       font-weight: 600;
+      color: black;
       svg {
         font-size: 30px;
         vertical-align: middle;
       }
     }
+  }
+  a:hover {
+    color: $red;
   }
 
   ul {

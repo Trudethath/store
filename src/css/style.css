@@ -97,11 +97,16 @@ body {
 .navbar-container .user-side a {
   margin: 0 5px;
   font-weight: 600;
+  color: black;
 }
 
 .navbar-container .user-side a svg {
   font-size: 30px;
   vertical-align: middle;
+}
+
+.navbar-container a:hover {
+  color: #cf0a2c;
 }
 
 .navbar-container ul li {
