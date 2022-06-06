@@ -1,0 +1,48 @@
+.navbar-container {
+  padding: 0 5vw;
+  display: flex;
+  line-height: 60px;
+  width: 100vw;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid grey;
+
+  .navbar-icon {
+    color: $red;
+    font-size: 3.1rem;
+  }
+
+  .menu-items {
+    margin: 0 25px;
+    li {
+      margin: 0 5px;
+    }
+  }
+
+  .user-side {
+    margin: 0 10px;
+    margin-left: auto;
+
+    & a:first-child {
+      margin: 0 30px;
+      svg {
+        margin-right: 10px;
+      }
+    }
+
+    a {
+      margin: 0 5px;
+      font-weight: 600;
+      svg {
+        font-size: 30px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  ul {
+    li {
+      display: inline;
+    }
+  }
+}
