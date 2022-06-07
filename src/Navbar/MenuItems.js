@@ -19,6 +19,11 @@ const MenuItems = [
     title: "Women",
     url: "women",
   },
+  {
+    id: 4,
+    title: "All",
+    url: "all",
+  },
 ]
 
 export default MenuItems

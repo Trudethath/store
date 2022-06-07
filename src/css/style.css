@@ -65,13 +65,73 @@ body {
   margin: 0 auto;
 }
 
+.items-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto auto;
+  row-gap: 50px;
+  -webkit-column-gap: 25px;
+          column-gap: 25px;
+  max-width: 1300px;
+  margin: 15px auto;
+}
+
+.items-title {
+  width: 1300px;
+  margin: 15px auto;
+}
+
+.item {
+  width: auto;
+  height: 340px;
+  position: relative;
+  padding: 10px;
+}
+
+.item h5 {
+  padding: 0 25px;
+}
+
+.item .item-desc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-weight: 600;
+  padding: 0 25px;
+}
+
+.item .item-desc .price {
+  margin-left: auto;
+}
+
+.item .favorite-icon {
+  position: absolute;
+  font-size: 30px;
+  top: 10px;
+  right: 25px;
+}
+
+.item .sale {
+  position: absolute;
+  font-weight: 600;
+  left: 10px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+}
+
 .navbar-container {
   padding: 0 5vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   line-height: 60px;
-  width: 100vw;
+  max-width: 100vw;
   height: 60px;
   background-color: white;
   border-bottom: 1px solid grey;
@@ -112,10 +172,6 @@ body {
 .navbar-container .user-side a svg {
   font-size: 30px;
   vertical-align: middle;
-}
-
-.navbar-container a:hover {
-  color: #cf0a2c;
 }
 
 .navbar-container ul li {

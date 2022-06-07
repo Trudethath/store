@@ -14,6 +14,7 @@ function Content() {
       <Route path='/sale' element={<ItemsLayout />} />
       <Route path='/men' element={<ItemsLayout />} />
       <Route path='/women' element={<ItemsLayout />} />
+      <Route path='/all' element={<ItemsLayout />} />
       <Route path='/signIn' element={<SignInLayout />} />
       <Route path='/favorite' element={<FavoritesLayout />} />
       <Route path='/cart' element={<CartLayout />} />
