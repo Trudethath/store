@@ -17,7 +17,6 @@ const AppProvider = ({ children }) => {
       release_year: 2017,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 0,
     },
     {
@@ -31,7 +30,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 12,
     },
     {
@@ -45,7 +43,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 17,
     },
     {
@@ -59,7 +56,6 @@ const AppProvider = ({ children }) => {
       release_year: 2017,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 18,
     },
     {
@@ -73,7 +69,6 @@ const AppProvider = ({ children }) => {
       release_year: 2022,
       onSale: true,
       favorite: false,
-      inCart: false,
       quantity: 7,
     },
     {
@@ -87,7 +82,6 @@ const AppProvider = ({ children }) => {
       release_year: 2020,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 3,
     },
     {
@@ -101,7 +95,6 @@ const AppProvider = ({ children }) => {
       release_year: 2022,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 1,
     },
     {
@@ -115,7 +108,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: true,
       favorite: false,
-      inCart: false,
       quantity: 9,
     },
     {
@@ -129,7 +121,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 16,
     },
     {
@@ -143,7 +134,6 @@ const AppProvider = ({ children }) => {
       release_year: 2019,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 6,
     },
     {
@@ -157,7 +147,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 6,
     },
     {
@@ -171,7 +160,6 @@ const AppProvider = ({ children }) => {
       release_year: 2016,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 15,
     },
     {
@@ -185,7 +173,6 @@ const AppProvider = ({ children }) => {
       release_year: 2017,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 8,
     },
     {
@@ -199,7 +186,6 @@ const AppProvider = ({ children }) => {
       release_year: 2017,
       onSale: true,
       favorite: false,
-      inCart: false,
       quantity: 15,
     },
     {
@@ -213,7 +199,6 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 15,
     },
     {
@@ -227,7 +212,6 @@ const AppProvider = ({ children }) => {
       release_year: 2019,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 12,
     },
     {
@@ -241,7 +225,6 @@ const AppProvider = ({ children }) => {
       release_year: 2022,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 3,
     },
     {
@@ -255,7 +238,6 @@ const AppProvider = ({ children }) => {
       release_year: 2022,
       onSale: true,
       favorite: false,
-      inCart: false,
       quantity: 25,
     },
     {
@@ -269,7 +251,6 @@ const AppProvider = ({ children }) => {
       release_year: 2022,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 0,
     },
     {
@@ -283,7 +264,6 @@ const AppProvider = ({ children }) => {
       release_year: 2019,
       onSale: false,
       favorite: false,
-      inCart: false,
       quantity: 4,
     },
     {
@@ -297,10 +277,11 @@ const AppProvider = ({ children }) => {
       release_year: 2020,
       onSale: true,
       favorite: false,
-      inCart: false,
       quantity: 4,
     },
   ])
+
+  const [cartItems, setCartItems] = useState([])
 
   const toggleFavorite = (id) => {
     let tempItems = [...items]

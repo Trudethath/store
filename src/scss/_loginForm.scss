@@ -1,0 +1,92 @@
+.login-wrapper {
+  width: 1300px;
+  margin: 15px auto;
+
+  .switchers {
+    width: 350px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    .login-switcher {
+      display: block;
+      width: 100%;
+      height: 40px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 40px;
+      border-bottom: 2px solid black;
+    }
+
+    .active {
+      border-bottom: 2px solid $red;
+    }
+  }
+
+  .login-form {
+    position: relative;
+    margin-top: 15px;
+    width: 350px;
+    label {
+      margin: 13px 0 2px;
+
+      h3 {
+        display: block;
+      }
+    }
+    input[type="text"],
+    input[type="password"] {
+      margin-bottom: 7px;
+      padding: 2px;
+      height: 40px;
+      width: 100%;
+      outline: none;
+      border: none;
+      font-size: 19px;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .change-password-visibility {
+    outline: none;
+    border: none;
+    position: absolute;
+    height: 20px;
+    margin-top: 11px;
+    right: 0;
+    background-color: white;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .forgot-password {
+    font-size: 14px;
+    margin-top: 17px;
+    text-decoration: underline;
+    display: block;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .create-account {
+    font-size: 14px;
+    margin-top: 17px;
+    text-decoration: underline;
+    display: block;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+
+  #submit {
+    margin-top: 70px;
+    outline: none;
+    border: none;
+    background-color: $red;
+    padding: 15px;
+    width: 180px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+  }
+}

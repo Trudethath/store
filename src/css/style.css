@@ -321,10 +321,106 @@ body {
 .item-details-wrapper {
   width: 1300px;
   margin: 0 auto;
-  background-color: red;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 60% 40%;
       grid-template-columns: 60% 40%;
+}
+
+.login-wrapper {
+  width: 1300px;
+  margin: 15px auto;
+}
+
+.login-wrapper .switchers {
+  width: 350px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.login-wrapper .switchers .login-switcher {
+  display: block;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+  border-bottom: 2px solid black;
+}
+
+.login-wrapper .switchers .active {
+  border-bottom: 2px solid #cf0a2c;
+}
+
+.login-wrapper .login-form {
+  position: relative;
+  margin-top: 15px;
+  width: 350px;
+}
+
+.login-wrapper .login-form label {
+  margin: 13px 0 2px;
+}
+
+.login-wrapper .login-form label h3 {
+  display: block;
+}
+
+.login-wrapper .login-form input[type="text"],
+.login-wrapper .login-form input[type="password"] {
+  margin-bottom: 7px;
+  padding: 2px;
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  border-bottom: 1px solid black;
+}
+
+.login-wrapper .change-password-visibility {
+  outline: none;
+  border: none;
+  position: absolute;
+  height: 20px;
+  margin-top: 11px;
+  right: 0;
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-wrapper .forgot-password {
+  font-size: 14px;
+  margin-top: 17px;
+  text-decoration: underline;
+  display: block;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.login-wrapper .create-account {
+  font-size: 14px;
+  margin-top: 17px;
+  text-decoration: underline;
+  display: block;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+}
+
+.login-wrapper #submit {
+  margin-top: 70px;
+  outline: none;
+  border: none;
+  background-color: #cf0a2c;
+  padding: 15px;
+  width: 180px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
