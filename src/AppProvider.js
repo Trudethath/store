@@ -16,7 +16,7 @@ const AppProvider = ({ children }) => {
       sex: "male",
       release_year: 2017,
       onSale: false,
-      favorite: false,
+      favorite: true,
       inCart: false,
       quantity: 15,
     },
@@ -301,7 +301,21 @@ const AppProvider = ({ children }) => {
       quantity: 4,
     },
   ])
-  return <AppContext.Provider value={{ items }}>{children}</AppContext.Provider>
+
+  const toggleFavorite = (id) => {
+    let tempItems = [...items]
+    tempItems.forEach((item) => {
+      if (item.id === id) {
+        item.favorite = !item.favorite
+      }
+    })
+    setItems(tempItems)
+  }
+  return (
+    <AppContext.Provider value={{ items, toggleFavorite }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 export default AppProvider

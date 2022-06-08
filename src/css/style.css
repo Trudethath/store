@@ -131,6 +131,7 @@ body {
 
 .item .favorite-icon {
   position: absolute;
+  z-index: 11;
   font-size: 30px;
   top: 10px;
   right: 25px;
@@ -143,6 +144,10 @@ body {
   background-color: black;
   color: white;
   padding: 5px 10px;
+}
+
+.item .icon-active {
+  color: #cf0a2c;
 }
 
 .navbar-container {
