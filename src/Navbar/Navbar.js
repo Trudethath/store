@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className='user-side'>
         <Link to='signIn'>
           <AiOutlineUser />
-          Zaloguj się
+          Log in
         </Link>
         <Link to='favorite'>
           <AiOutlineHeart />

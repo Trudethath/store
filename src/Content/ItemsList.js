@@ -52,7 +52,9 @@ function ItemsList() {
   return (
     <>
       <div className='items-title'>
-        <h2>{title}</h2>
+        <h2>
+          {title} ({itemsToRender.length})
+        </h2>
       </div>
       <div className='items-list'>{itemsToRender}</div>
     </>

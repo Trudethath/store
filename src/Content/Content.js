@@ -5,6 +5,7 @@ import Home from "./Home"
 import ItemsLayout from "./ItemsLayout"
 import SignInLayout from "./SignInLayout"
 import CartLayout from "./CartLayout"
+import ItemDetails from "./ItemDetails"
 
 function Content() {
   return (
@@ -18,6 +19,7 @@ function Content() {
       <Route path='/signIn' element={<SignInLayout />} />
       <Route path='/favorite' element={<FavoritesLayout />} />
       <Route path='/cart' element={<CartLayout />} />
+      <Route path='itemDetails/' element={<ItemDetails />} />
     </Routes>
   )
 }
