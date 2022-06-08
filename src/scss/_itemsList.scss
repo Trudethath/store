@@ -53,4 +53,30 @@
   .icon-active {
     color: $red;
   }
+
+  .item-unavaiable {
+    opacity: 0.6;
+  }
+
+  .item-unavaiable-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    // font-weight: 700;
+    color: white;
+  }
+  .item-unavaiable-text::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 40px;
+    background-color: black;
+    border-radius: 6px;
+    z-index: -1;
+  }
 }

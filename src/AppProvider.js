@@ -16,9 +16,9 @@ const AppProvider = ({ children }) => {
       sex: "male",
       release_year: 2017,
       onSale: false,
-      favorite: true,
+      favorite: false,
       inCart: false,
-      quantity: 15,
+      quantity: 0,
     },
     {
       id: 1,
@@ -270,7 +270,7 @@ const AppProvider = ({ children }) => {
       onSale: false,
       favorite: false,
       inCart: false,
-      quantity: 1,
+      quantity: 0,
     },
     {
       id: 19,

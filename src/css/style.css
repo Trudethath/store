@@ -150,6 +150,34 @@ body {
   color: #cf0a2c;
 }
 
+.item .item-unavaiable {
+  opacity: 0.6;
+}
+
+.item .item-unavaiable-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+}
+
+.item .item-unavaiable-text::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 170px;
+  height: 40px;
+  background-color: black;
+  border-radius: 6px;
+  z-index: -1;
+}
+
 .navbar-container {
   padding: 0 10vw;
   display: -webkit-box;

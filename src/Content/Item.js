@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { AppContext } from "../AppProvider"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
@@ -36,7 +36,14 @@ function Item(props) {
         />
       )}
       <div onClick={() => handleClick("item")}>
-        <img src={item.img} alt={item.model} />
+        {item.quantity <= 0 ? (
+          <div>
+            <img className='item-unavaiable' src={item.img} alt={item.model} />
+            <span className='item-unavaiable-text'>OUT OF STOCK</span>
+          </div>
+        ) : (
+          <img src={item.img} alt={item.model} />
+        )}
         <div className='item-desc'>
           <h4>{item.model}</h4>
           <span className='price'>{item.price} $</span>
