@@ -1,26 +1,43 @@
-import { useLocation } from "react-router-dom"
+import { GoPrimitiveDot } from "react-icons/go"
+import SizeTable from "./SizeTable"
 
-function ItemDetails() {
-  const location = useLocation()
-  const { item } = location.state
-  return (
-    <div className='item-details-wrapper'>
-      <div className='images-wrapper'>
-        <img src={item.img} alt={item.model} />
-      </div>
-      <div>
-        <h1>{item.model}</h1>
-        <h3>{item.price} $</h3>
-        {item.quantity <= 0 ? (
-          <span>Produkt niedostępny</span>
-        ) : (
-          <span>Produkt dostępny</span>
-        )}
+function ItemDetails(props) {
+  const { item } = props
 
-        <button>Dodaj do koszyka</button>
-      </div>
+  const details = (
+    <div className='item-details'>
+      <h5>{item.gender === "female" ? "Women's" : "Men's"}</h5>
+      <h1>{item.model}</h1>
+      <h3 className='priceTag'>{item.price} $</h3>
+      {item.quantity <= 0 ? (
+        <span>
+          The Product is unavailable{" "}
+          <span>
+            <GoPrimitiveDot
+              className='availabilityDot'
+              style={{ color: "red" }}
+            />
+          </span>
+        </span>
+      ) : (
+        <span>
+          The Product is available{" "}
+          <span>
+            <GoPrimitiveDot
+              className='availabilityDot'
+              style={{ color: "green" }}
+            />
+          </span>
+        </span>
+      )}
+
+      <SizeTable availableSizes={item.sizes} itemQuantity={item.quantity} />
+
+      <button className='addToCart'>Add to cart</button>
     </div>
   )
+
+  return details
 }
 
 export default ItemDetails

@@ -45,6 +45,8 @@ function ItemsList() {
 
   const itemsToShow = filterItems(location.pathname)
 
+  console.log(itemsToShow)
+
   const itemsToRender = itemsToShow.map((item) => (
     <Item key={item.id} item={item} />
   ))

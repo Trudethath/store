@@ -6,8 +6,6 @@ import Item from "./Item"
 import image1 from "../images/1.png"
 import image2 from "../images/2.png"
 import image3 from "../images/3.png"
-import maleFootwear from "../images/maleFootwear.png"
-import femaleFootwear from "../images/femaleFootwear.png"
 
 const images = [
   {

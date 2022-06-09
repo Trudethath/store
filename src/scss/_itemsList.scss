@@ -1,10 +1,11 @@
 .items-list {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  // grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   row-gap: 50px;
   column-gap: 25px;
   max-width: 1300px;
-  margin: 15px auto;
+  margin: auto;
 }
 
 .items-title {
@@ -13,11 +14,13 @@
 }
 
 .item {
+  display: flex;
   width: auto;
   height: 340px;
   position: relative;
   padding: 10px;
   cursor: pointer;
+  justify-content: center;
 
   h5 {
     padding: 0 25px;
@@ -61,9 +64,9 @@
   .item-unavaiable-text {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
+    font-size: 16px;
     color: white;
   }
   .item-unavaiable-text::before {

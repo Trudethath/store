@@ -5,7 +5,7 @@ import Home from "./Home"
 import ItemsLayout from "./ItemsLayout"
 import LogIn from "./LogIn"
 import CartLayout from "./CartLayout"
-import ItemDetails from "./ItemDetails"
+import ItemDetailsLayout from "./ItemDetailsLayout"
 
 function Content() {
   return (
@@ -19,7 +19,7 @@ function Content() {
       <Route path='/signIn' element={<LogIn />} />
       <Route path='/favorite' element={<FavoritesLayout />} />
       <Route path='/cart' element={<CartLayout />} />
-      <Route path='/itemDetails' element={<ItemDetails />} />
+      <Route path='/itemDetails' element={<ItemDetailsLayout />} />
     </Routes>
   )
 }
