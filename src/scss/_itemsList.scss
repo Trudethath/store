@@ -63,7 +63,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 18px;
     color: white;
   }
   .item-unavaiable-text::before {
@@ -73,8 +73,8 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 170px;
-    height: 40px;
-    background-color: black;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.9);
     border-radius: 6px;
     z-index: -1;
   }

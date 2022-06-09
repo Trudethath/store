@@ -160,7 +160,7 @@ body {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 
@@ -172,8 +172,8 @@ body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 170px;
-  height: 40px;
-  background-color: black;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 6px;
   z-index: -1;
 }
@@ -356,7 +356,7 @@ body {
 
 .login-wrapper .login-form {
   position: relative;
-  margin-top: 15px;
+  margin-top: 20px;
   width: 350px;
 }
 
@@ -369,15 +369,63 @@ body {
 }
 
 .login-wrapper .login-form input[type="text"],
+.login-wrapper .login-form input[type="email"],
 .login-wrapper .login-form input[type="password"] {
   margin-bottom: 7px;
-  padding: 2px;
+  padding-top: 7px;
   height: 40px;
   width: 100%;
   outline: none;
   border: none;
   font-size: 19px;
   border-bottom: 1px solid black;
+}
+
+.login-wrapper .login-form .label-checkbox {
+  display: block;
+  position: absolute;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.login-wrapper .login-form .label-checkbox input {
+  margin-right: 6px;
+}
+
+.login-wrapper .login-form .label-checkbox span {
+  display: inline;
+}
+
+.login-wrapper .login-form .label-checkbox.terms {
+  margin-top: 20px;
+}
+
+.login-wrapper .login-form input[type="text"]::-webkit-input-placeholder,
+.login-wrapper .login-form input[type="email"]::-webkit-input-placeholder,
+.login-wrapper .login-form input[type="password"]::-webkit-input-placeholder {
+  color: grey;
+  opacity: 0.5;
+}
+
+.login-wrapper .login-form input[type="text"]:-ms-input-placeholder,
+.login-wrapper .login-form input[type="email"]:-ms-input-placeholder,
+.login-wrapper .login-form input[type="password"]:-ms-input-placeholder {
+  color: grey;
+  opacity: 0.5;
+}
+
+.login-wrapper .login-form input[type="text"]::-ms-input-placeholder,
+.login-wrapper .login-form input[type="email"]::-ms-input-placeholder,
+.login-wrapper .login-form input[type="password"]::-ms-input-placeholder {
+  color: grey;
+  opacity: 0.5;
+}
+
+.login-wrapper .login-form input[type="text"]::placeholder,
+.login-wrapper .login-form input[type="email"]::placeholder,
+.login-wrapper .login-form input[type="password"]::placeholder {
+  color: grey;
+  opacity: 0.5;
 }
 
 .login-wrapper .change-password-visibility {
@@ -394,7 +442,7 @@ body {
 
 .login-wrapper .forgot-password {
   font-size: 14px;
-  margin-top: 17px;
+  margin-top: 9px;
   text-decoration: underline;
   display: block;
   position: absolute;

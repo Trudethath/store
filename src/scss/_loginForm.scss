@@ -24,7 +24,7 @@
 
   .login-form {
     position: relative;
-    margin-top: 15px;
+    margin-top: 20px;
     width: 350px;
     label {
       margin: 13px 0 2px;
@@ -34,15 +34,42 @@
       }
     }
     input[type="text"],
+    input[type="email"],
     input[type="password"] {
       margin-bottom: 7px;
-      padding: 2px;
+      padding-top: 7px;
       height: 40px;
       width: 100%;
       outline: none;
       border: none;
       font-size: 19px;
       border-bottom: 1px solid black;
+    }
+
+    .label-checkbox {
+      display: block;
+      position: absolute;
+      margin-top: 7px;
+      cursor: pointer;
+
+      input {
+        margin-right: 6px;
+      }
+
+      span {
+        display: inline;
+      }
+
+      &.terms {
+        margin-top: 20px;
+      }
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="password"]::placeholder {
+      color: grey;
+      opacity: 0.5;
     }
   }
 
@@ -60,7 +87,7 @@
 
   .forgot-password {
     font-size: 14px;
-    margin-top: 17px;
+    margin-top: 9px;
     text-decoration: underline;
     display: block;
     position: absolute;

@@ -108,7 +108,7 @@ const AppProvider = ({ children }) => {
       release_year: 2018,
       onSale: true,
       favorite: false,
-      quantity: 9,
+      quantity: 0,
     },
     {
       id: 8,
@@ -186,7 +186,7 @@ const AppProvider = ({ children }) => {
       release_year: 2017,
       onSale: true,
       favorite: false,
-      quantity: 15,
+      quantity: 0,
     },
     {
       id: 14,
