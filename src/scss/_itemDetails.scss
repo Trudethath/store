@@ -53,6 +53,24 @@
     background-color: $red;
     cursor: pointer;
   }
+
+  .link {
+    display: block;
+    margin-top: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  i {
+    font-size: 25px;
+    margin-right: 15px;
+    .message {
+      transform: scale(-1, 1);
+    }
+    .favorite {
+      color: $red;
+    }
+  }
 }
 
 .images-wrapper {

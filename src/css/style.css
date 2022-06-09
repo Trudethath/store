@@ -391,6 +391,27 @@ body {
   cursor: pointer;
 }
 
+.item-details .link {
+  display: block;
+  margin-top: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.item-details i {
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.item-details i .message {
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.item-details i .favorite {
+  color: #cf0a2c;
+}
+
 .images-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

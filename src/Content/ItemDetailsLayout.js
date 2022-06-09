@@ -12,7 +12,7 @@ function ItemDetailsLayout() {
         <img src={item.img} alt={item.model} />
         <img src={item.img} alt={item.model} />
       </ItemDetailsGallery>
-      <ItemDetails item={item} />
+      <ItemDetails itemId={item.id} />
     </div>
   )
 }

@@ -1,6 +1,5 @@
 function SizeChunk(props) {
   const { availableSizes, size, itemQuantity } = props
-  console.log(itemQuantity)
   return (
     <div
       className={
