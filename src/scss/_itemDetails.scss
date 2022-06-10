@@ -1,8 +1,8 @@
 .item-details-wrapper {
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
 }
 
 .item-details {
@@ -21,9 +21,9 @@
     margin: 15px 0;
     width: 300px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    row-gap: 2px;
-    column-gap: 2px;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    row-gap: 3px;
+    column-gap: 3px;
 
     .sizeChunk {
       background-color: $grey;
@@ -70,6 +70,11 @@
     .favorite {
       color: $red;
     }
+  }
+
+  .item-desc {
+    margin-top: 16px;
+    font-size: 16px;
   }
 }
 

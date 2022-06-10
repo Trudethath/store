@@ -5,6 +5,7 @@ import ItemDetails from "./ItemDetails"
 function ItemDetailsLayout() {
   const location = useLocation()
   const { item } = location.state
+
   return (
     <div className='item-details-wrapper'>
       <ItemDetailsGallery>

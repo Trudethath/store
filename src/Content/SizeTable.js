@@ -3,7 +3,6 @@ import SizeChunk from "./SizeChunk"
 const allSizes = [38, 39, 40, 41, 42, 43, 44, 45]
 
 function SizeTable(props) {
-  console.log(props)
   const { availableSizes, itemQuantity } = props
 
   const table = allSizes.map((size, index) => (

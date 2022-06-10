@@ -1,0 +1,80 @@
+.newsletter-bar {
+  margin: 50px 0 15px 0;
+  width: 100%;
+  background-color: black;
+  text-align: center;
+  line-height: 80px;
+  height: 80px;
+  color: white;
+
+  & button {
+    outline: none;
+    border: none;
+    color: white;
+    width: 150px;
+    background-color: $red;
+    height: 40px;
+    margin: 0 25px;
+    font-size: 17px;
+    cursor: pointer;
+  }
+}
+
+.flex-container {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+
+  .columns-wrapper {
+    width: 70vw;
+    height: 300px;
+    padding: 20px 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .column {
+      .footerTitle {
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+        margin-left: -20px;
+        li {
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .about {
+    width: 300px;
+    padding: 15px;
+    i {
+      font-size: 60px;
+      color: $red;
+    }
+
+    span {
+      color: $red;
+      font-size: 40px;
+      margin-left: 7px;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 17px;
+    }
+
+    .icons {
+      font-size: 30px;
+      margin: 15px;
+      svg {
+        margin: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+}

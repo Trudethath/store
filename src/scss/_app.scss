@@ -8,3 +8,16 @@ body {
 .center-horizontally {
   text-align: center;
 }
+
+ul {
+  list-style-type: circle;
+  list-style: outside;
+  margin-top: 20px;
+  & li {
+    margin: 5px 20px;
+  }
+}
+
+.home {
+  margin-bottom: 70px;
+}
