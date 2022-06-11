@@ -1,8 +1,8 @@
 function Column(props) {
   const { column } = props
 
-  const subTitles = column.subTitles.map((subTitle) => {
-    return <li>{subTitle}</li>
+  const subTitles = column.subTitles.map((subTitle, index) => {
+    return <li key={index}>{subTitle}</li>
   })
 
   return (

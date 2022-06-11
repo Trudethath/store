@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { AppContext } from "../AppProvider"
 
 import { GoPrimitiveDot } from "react-icons/go"
@@ -6,15 +6,43 @@ import { BiMessage } from "react-icons/bi"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 
 import SizeTable from "./SizeTable"
+import ColorTable from "./ColorTable"
 
 function ItemDetails(props) {
   const { itemId } = props
-  const { toggleFavorite, items } = useContext(AppContext)
+  const { toggleFavorite, addToCart, items } = useContext(AppContext)
+
+  const [chosenSize, setChosenSize] = useState(-1)
+  const [chosenColor, setChosenColor] = useState("")
 
   const item = items.filter((item) => item.id === itemId)
 
+  const handleSizePicker = (size) => {
+    setChosenSize(size)
+  }
+
+  const handleColorPicker = (color) => {
+    setChosenColor(color)
+  }
+
   const handleClick = () => {
     toggleFavorite(item[0].id)
+  }
+
+  const handleAddToCart = () => {
+    const newItem = {
+      model: item[0].model,
+      img: item[0].img,
+      color: chosenColor,
+      size: chosenSize,
+      price: item.price,
+      gender: item[0].gender,
+      release_year: item[0].release_year,
+      onSale: item[0].onSale,
+      favorite: item[0].favorite,
+      quantity: item[0].quantity,
+    }
+    addToCart(newItem)
   }
 
   const details = (
@@ -34,7 +62,7 @@ function ItemDetails(props) {
             </span>
           </span>
         ) : (
-          <span>
+          <span className='availability-text'>
             The Product is available{" "}
             <span>
               <GoPrimitiveDot
@@ -45,12 +73,29 @@ function ItemDetails(props) {
           </span>
         )}
 
+        <h4>Pick your size</h4>
         <SizeTable
           availableSizes={item[0].sizes}
           itemQuantity={item[0].quantity}
+          handleSizePicker={handleSizePicker}
         />
 
-        <button className='addToCart'>Add to cart</button>
+        <h4>Pick your color</h4>
+        <ColorTable
+          availableColors={item[0].colors}
+          itemQuantity={item[0].quantity}
+          handleColorPicker={handleColorPicker}
+        />
+
+        {item[0].quantity <= 0 ? (
+          <button className='addToCart deactivated' onClick={handleAddToCart}>
+            Add to cart
+          </button>
+        ) : (
+          <button className='addToCart' onClick={handleAddToCart}>
+            Add to cart
+          </button>
+        )}
 
         <span className='link'>
           <div>
@@ -114,7 +159,6 @@ function ItemDetails(props) {
             <li>Available in extended width sizes</li>
           </ul>
         </div>
-        <div className='col-2'></div>
       </div>
       <div></div>
     </>

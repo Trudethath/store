@@ -1,0 +1,22 @@
+.cart-wrapper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: 1500px;
+  margin: 0 auto;
+
+  .cart-flexbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 20% 60% 20%;
+      height: 200px;
+      img {
+        background-color: #fff;
+        width: 100%;
+      }
+    }
+  }
+}

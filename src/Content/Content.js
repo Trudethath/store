@@ -4,7 +4,7 @@ import FavoritesLayout from "./FavoritesLayout"
 import Home from "./Home"
 import ItemsLayout from "./ItemsLayout"
 import LogIn from "./LogIn"
-import CartLayout from "./CartLayout"
+import CartLayout from "../Cart/CartLayout"
 import ItemDetailsLayout from "./ItemDetailsLayout"
 
 function Content() {

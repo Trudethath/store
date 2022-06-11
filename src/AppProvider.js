@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
       id: 0,
       model: "564 Donkey",
       img: maleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [],
       price: 65,
       rating: 3,
@@ -24,7 +24,7 @@ const AppProvider = ({ children }) => {
       id: 1,
       model: "613 Donkey",
       img: maleFootwear,
-      color: "grey",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 40, 42, 43, 44],
       price: 120,
       rating: 4,
@@ -38,7 +38,7 @@ const AppProvider = ({ children }) => {
       id: 2,
       model: "702 Donkey",
       img: maleFootwear,
-      color: "green",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 42, 43, 44, 45],
       price: 116,
       rating: 4,
@@ -52,7 +52,7 @@ const AppProvider = ({ children }) => {
       id: 3,
       model: "755 Donkey",
       img: maleFootwear,
-      color: "white",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [39, 42, 43, 44, 45],
       price: 88,
       rating: 2,
@@ -66,7 +66,7 @@ const AppProvider = ({ children }) => {
       id: 4,
       model: "533 Donkey",
       img: maleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 42, 43, 44, 45],
       price: 223,
       rating: 5,
@@ -80,7 +80,7 @@ const AppProvider = ({ children }) => {
       id: 5,
       model: "599 Donkey",
       img: maleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 42, 43, 44, 45],
       price: 255,
       rating: 0,
@@ -94,7 +94,7 @@ const AppProvider = ({ children }) => {
       id: 6,
       model: "613 Donkey",
       img: maleFootwear,
-      color: "grey",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 42, 43, 44, 45],
       price: 300,
       rating: 0,
@@ -108,7 +108,7 @@ const AppProvider = ({ children }) => {
       id: 7,
       model: "677 Donkey",
       img: maleFootwear,
-      color: "blue",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44, 45],
       price: 100,
       rating: 4,
@@ -122,7 +122,7 @@ const AppProvider = ({ children }) => {
       id: 8,
       model: "688 Donkey",
       img: maleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44, 45],
       price: 100,
       rating: 4,
@@ -136,7 +136,7 @@ const AppProvider = ({ children }) => {
       id: 9,
       model: "601 Donkey",
       img: maleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44, 45],
       price: 140,
       rating: 5,
@@ -150,7 +150,7 @@ const AppProvider = ({ children }) => {
       id: 10,
       model: "708 Donkey",
       img: maleFootwear,
-      color: "white",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 44],
       price: 140,
       rating: 5,
@@ -164,7 +164,7 @@ const AppProvider = ({ children }) => {
       id: 11,
       model: "223 Donkey",
       img: femaleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 65,
       rating: 2,
@@ -178,7 +178,7 @@ const AppProvider = ({ children }) => {
       id: 12,
       model: "244 Donkey",
       img: femaleFootwear,
-      color: "white",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 100,
       rating: 5,
@@ -192,7 +192,7 @@ const AppProvider = ({ children }) => {
       id: 13,
       model: "288 Donkey",
       img: femaleFootwear,
-      color: "pink",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 100,
       rating: 4,
@@ -206,7 +206,7 @@ const AppProvider = ({ children }) => {
       id: 14,
       model: "377 Donkey",
       img: femaleFootwear,
-      color: "grey",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 150,
       rating: 4,
@@ -220,7 +220,7 @@ const AppProvider = ({ children }) => {
       id: 15,
       model: "344 Donkey",
       img: femaleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 44],
       price: 170,
       rating: 5,
@@ -234,7 +234,7 @@ const AppProvider = ({ children }) => {
       id: 16,
       model: "401 Donkey",
       img: femaleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43],
       price: 225,
       rating: 0,
@@ -248,7 +248,7 @@ const AppProvider = ({ children }) => {
       id: 17,
       model: "444 Donkey",
       img: femaleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 44],
       price: 220,
       rating: 4,
@@ -262,7 +262,7 @@ const AppProvider = ({ children }) => {
       id: 18,
       model: "222 Donkey",
       img: femaleFootwear,
-      color: "white",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [40, 41, 42, 43, 44],
       price: 300,
       rating: 5,
@@ -276,7 +276,7 @@ const AppProvider = ({ children }) => {
       id: 19,
       model: "273 Donkey",
       img: femaleFootwear,
-      color: "grey",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 180,
       rating: 3,
@@ -290,7 +290,7 @@ const AppProvider = ({ children }) => {
       id: 20,
       model: "308 Donkey",
       img: femaleFootwear,
-      color: "black",
+      colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 41, 42, 43, 44],
       price: 180,
       rating: 3,
@@ -304,6 +304,25 @@ const AppProvider = ({ children }) => {
 
   const [cartItems, setCartItems] = useState([])
 
+  const addToCart = (item) => {
+    let tempCartItems = [...cartItems]
+    const itemToAdd = {
+      id: cartItems.length,
+      img: item.img,
+      model: item.model,
+      color: item.color,
+      size: item.size,
+      price: item.price,
+      gender: item.gender,
+      release_year: item.release_year,
+      onSale: item.onSale,
+      favorite: item.favorite,
+      quantity: item.quantity,
+    }
+    tempCartItems.push(itemToAdd)
+    setCartItems(tempCartItems)
+  }
+
   const toggleFavorite = (id) => {
     let tempItems = [...items]
     tempItems.forEach((item) => {
@@ -314,7 +333,9 @@ const AppProvider = ({ children }) => {
     setItems(tempItems)
   }
   return (
-    <AppContext.Provider value={{ items, toggleFavorite }}>
+    <AppContext.Provider
+      value={{ items, cartItems, toggleFavorite, addToCart }}
+    >
       {children}
     </AppContext.Provider>
   )

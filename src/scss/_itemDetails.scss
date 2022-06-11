@@ -6,6 +6,9 @@
 }
 
 .item-details {
+  h4 {
+    margin-top: 10px;
+  }
   .priceTag {
     font-weight: 700;
     letter-spacing: 2px;
@@ -30,14 +33,39 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 40px;
       cursor: pointer;
-    }
 
-    .deactivated {
-      opacity: 0.5;
-      cursor: default;
+      &.deactivated {
+        opacity: 0.5;
+        cursor: default;
+      }
+    }
+  }
+
+  .colorTable {
+    margin: 15px 0;
+    width: 300px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    row-gap: 3px;
+    column-gap: 3px;
+
+    .colorChunk {
+      background-color: $grey;
+      padding: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 40px;
+      cursor: pointer;
+
+      &.deactivated {
+        opacity: 0.5;
+        cursor: default;
+      }
     }
   }
 
@@ -52,6 +80,10 @@
     height: 60px;
     background-color: $red;
     cursor: pointer;
+    &.deactivated {
+      opacity: 0.5;
+      cursor: default;
+    }
   }
 
   .link {

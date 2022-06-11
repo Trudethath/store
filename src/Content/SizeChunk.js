@@ -1,5 +1,6 @@
 function SizeChunk(props) {
-  const { availableSizes, size, itemQuantity } = props
+  const { availableSizes, size, itemQuantity, onClick } = props
+
   return (
     <div
       className={
@@ -7,6 +8,7 @@ function SizeChunk(props) {
           ? "sizeChunk"
           : "sizeChunk deactivated"
       }
+      onClick={() => onClick(size)}
     >
       {size}
     </div>
