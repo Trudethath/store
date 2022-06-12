@@ -21,10 +21,12 @@ function ItemDetails(props) {
   const item = items.filter((item) => item.id === itemId)
 
   const handleSizePicker = (size) => {
+    setShowSizeVal(false)
     setChosenSize(size)
   }
 
   const handleColorPicker = (color) => {
+    setShowColorVal(false)
     setChosenColor(color)
   }
 
@@ -34,21 +36,10 @@ function ItemDetails(props) {
 
   const handleAddToCart = (e) => {
     e.preventDefault()
-
-    if (chosenSize === -1) {
-      setShowSizeVal(true)
-    } else {
-      setShowSizeVal(false)
-    }
-
-    if (chosenColor === "") {
-      setShowColorVal(true)
-    } else {
-      setShowColorVal(false)
-    }
+    chosenSize === -1 ? setShowSizeVal(true) : setShowSizeVal(false)
+    chosenColor === "" ? setShowColorVal(true) : setShowColorVal(false)
 
     if (chosenColor !== "" && chosenSize !== -1) {
-      console.log("addtocart")
       const newItem = {
         model: item[0].model,
         img: item[0].img,

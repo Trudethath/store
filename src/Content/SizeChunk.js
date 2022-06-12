@@ -1,18 +1,42 @@
 function SizeChunk(props) {
-  const { availableSizes, size, itemQuantity, onClick } = props
+  const { availableSizes, radioChecked, size, itemQuantity, onChange } = props
 
-  return (
-    <div
-      className={
-        availableSizes.includes(size) && itemQuantity > 0
-          ? "sizeChunk"
-          : "sizeChunk deactivated"
-      }
-      onClick={() => onClick(size)}
-    >
-      {size}
-    </div>
+  const labelActive = (
+    <>
+      <input
+        type='radio'
+        name='size'
+        onChange={onChange}
+        id={size}
+        value={size}
+        defaultChecked={radioChecked}
+        className={"active"}
+      ></input>
+      <label className='sizeChunk' htmlFor={size}>
+        {size}
+      </label>
+    </>
   )
+
+  const labelNotActive = (
+    <>
+      <input
+        type='radio'
+        name='size'
+        id={size}
+        value={size}
+        onChange={onChange}
+        className={"inactive"}
+      ></input>
+      <label htmlFor={size} className='sizeChunk deactivated'>
+        {size}
+      </label>
+    </>
+  )
+
+  return availableSizes.includes(size) && itemQuantity > 0
+    ? labelActive
+    : labelNotActive
 }
 
 export default SizeChunk
