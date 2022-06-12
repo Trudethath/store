@@ -15,6 +15,9 @@ function ItemDetails(props) {
   const [chosenSize, setChosenSize] = useState(-1)
   const [chosenColor, setChosenColor] = useState("")
 
+  const [showSizeVal, setShowSizeVal] = useState(false)
+  const [showColorVal, setShowColorVal] = useState(false)
+
   const item = items.filter((item) => item.id === itemId)
 
   const handleSizePicker = (size) => {
@@ -29,20 +32,37 @@ function ItemDetails(props) {
     toggleFavorite(item[0].id)
   }
 
-  const handleAddToCart = () => {
-    const newItem = {
-      model: item[0].model,
-      img: item[0].img,
-      color: chosenColor,
-      size: chosenSize,
-      price: item.price,
-      gender: item[0].gender,
-      release_year: item[0].release_year,
-      onSale: item[0].onSale,
-      favorite: item[0].favorite,
-      quantity: item[0].quantity,
+  const handleAddToCart = (e) => {
+    e.preventDefault()
+
+    if (chosenSize === -1) {
+      setShowSizeVal(true)
+    } else {
+      setShowSizeVal(false)
     }
-    addToCart(newItem)
+
+    if (chosenColor === "") {
+      setShowColorVal(true)
+    } else {
+      setShowColorVal(false)
+    }
+
+    if (chosenColor !== "" && chosenSize !== -1) {
+      console.log("addtocart")
+      const newItem = {
+        model: item[0].model,
+        img: item[0].img,
+        color: chosenColor,
+        size: chosenSize,
+        price: item.price,
+        gender: item[0].gender,
+        release_year: item[0].release_year,
+        onSale: item[0].onSale,
+        favorite: item[0].favorite,
+        quantity: item[0].quantity,
+      }
+      addToCart(newItem)
+    }
   }
 
   const details = (
@@ -72,30 +92,37 @@ function ItemDetails(props) {
             </span>
           </span>
         )}
+        <form>
+          <h4>Pick your size</h4>
+          {showSizeVal && (
+            <h4 style={{ color: "red" }}>Please select your size</h4>
+          )}
+          <SizeTable
+            availableSizes={item[0].sizes}
+            itemQuantity={item[0].quantity}
+            handleSizePicker={handleSizePicker}
+          />
 
-        <h4>Pick your size</h4>
-        <SizeTable
-          availableSizes={item[0].sizes}
-          itemQuantity={item[0].quantity}
-          handleSizePicker={handleSizePicker}
-        />
+          <h4>Pick your color</h4>
+          {showColorVal && (
+            <h4 style={{ color: "red" }}>Please select your color</h4>
+          )}
+          <ColorTable
+            availableColors={item[0].colors}
+            itemQuantity={item[0].quantity}
+            handleColorPicker={handleColorPicker}
+          />
 
-        <h4>Pick your color</h4>
-        <ColorTable
-          availableColors={item[0].colors}
-          itemQuantity={item[0].quantity}
-          handleColorPicker={handleColorPicker}
-        />
-
-        {item[0].quantity <= 0 ? (
-          <button className='addToCart deactivated' onClick={handleAddToCart}>
-            Add to cart
-          </button>
-        ) : (
-          <button className='addToCart' onClick={handleAddToCart}>
-            Add to cart
-          </button>
-        )}
+          {item[0].quantity <= 0 ? (
+            <button className='addToCart deactivated' onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          ) : (
+            <button className='addToCart' onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          )}
+        </form>
 
         <span className='link'>
           <div>

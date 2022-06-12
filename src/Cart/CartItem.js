@@ -1,6 +1,6 @@
 function CartItem(props) {
   const { item } = props
-  console.log(item)
+  // console.log(item)
 
   return (
     <div className='cart-item'>
