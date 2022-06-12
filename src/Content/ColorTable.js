@@ -3,7 +3,8 @@ import ColorChunk from "./ColorChunk"
 function ColorTable(props) {
   const { availableColors, itemQuantity, handleColorPicker } = props
 
-  const handleClick = (color) => {
+  const handleChange = (e) => {
+    const color = e.target.value
     handleColorPicker(color)
   }
 
@@ -13,7 +14,7 @@ function ColorTable(props) {
       color={color}
       availableColors={availableColors}
       itemQuantity={itemQuantity}
-      onClick={handleClick}
+      onChange={handleChange}
     />
   ))
   return <div className='colorTable'>{table}</div>
