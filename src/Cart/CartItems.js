@@ -7,11 +7,9 @@ function CartItems() {
 
   let tempCartItems = [...cartItems]
 
-  const filterCartItems = cartItems.filter((item, index) => {
-    return tempCartItems.indexOf(item) === index
-  })
+  // console.log(tempCartItems)
 
-  const mapCartItems = filterCartItems.map((item, index) => {
+  const mapCartItems = tempCartItems.map((item, index) => {
     return <CartItem key={index} item={item} />
   })
 

@@ -11,7 +11,10 @@ function App() {
       <BrowserRouter basename='/'>
         <AppProvider>
           <Navbar />
-          <Content />
+          <div className='content-wrapper'>
+            <Content />
+          </div>
+
           <Footer />
         </AppProvider>
       </BrowserRouter>

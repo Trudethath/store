@@ -26,7 +26,7 @@ const Navbar = () => {
           <AiOutlineUser />
           Log in
         </Link>
-        <Link to='favorite'>
+        <Link to='wishlist'>
           <AiOutlineHeart />
         </Link>
         <Link to='cart'>

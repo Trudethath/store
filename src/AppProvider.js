@@ -92,7 +92,7 @@ const AppProvider = ({ children }) => {
     },
     {
       id: 6,
-      model: "613 Donkey",
+      model: "645 Donkey",
       img: maleFootwear,
       colors: ["black", "grey", "green", "yellow", "red"],
       sizes: [38, 39, 40, 42, 43, 44, 45],
@@ -306,8 +306,10 @@ const AppProvider = ({ children }) => {
 
   const addToCart = (item) => {
     let tempCartItems = [...cartItems]
+
     const itemToAdd = {
       id: cartItems.length,
+      itemId: item.id,
       img: item.img,
       model: item.model,
       color: item.color,
@@ -318,8 +320,15 @@ const AppProvider = ({ children }) => {
       onSale: item.onSale,
       favorite: item.favorite,
       quantity: item.quantity,
+      inCart: 0,
     }
     tempCartItems.push(itemToAdd)
+
+    // for (let index = 0; index < tempCartItems.length; index++) {
+    //   const element = tempCartItems[index]
+    //   if(element.itemId ===)
+    // }
+
     setCartItems(tempCartItems)
   }
 

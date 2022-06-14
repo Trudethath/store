@@ -1,6 +1,6 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
-import FavoritesLayout from "./FavoritesLayout"
+import WishlistLayout from "../Wishlist/WishlistLayout"
 import Home from "./Home"
 import ItemsLayout from "./ItemsLayout"
 import LogIn from "./LogIn"
@@ -17,7 +17,7 @@ function Content() {
       <Route path='/women' element={<ItemsLayout />} />
       <Route path='/all' element={<ItemsLayout />} />
       <Route path='/signIn' element={<LogIn />} />
-      <Route path='/favorite' element={<FavoritesLayout />} />
+      <Route path='/wishlist' element={<WishlistLayout />} />
       <Route path='/cart' element={<CartLayout />} />
       <Route path='/itemDetails' element={<ItemDetailsLayout />} />
     </Routes>

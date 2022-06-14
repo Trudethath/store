@@ -41,6 +41,7 @@ function ItemDetails(props) {
 
     if (chosenColor !== "" && chosenSize !== -1) {
       const newItem = {
+        id: item[0].id,
         model: item[0].model,
         img: item[0].img,
         color: chosenColor,
