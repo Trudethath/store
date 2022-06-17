@@ -1,8 +1,9 @@
 function AddItemsToCart(props) {
   const { selectedItems, sendItemsToCart } = props
-  console.log(selectedItems)
 
   let finalItems = [...selectedItems]
+
+  console.log(finalItems)
 
   // filter for removed objects
   // finalItems.forEach((element) => {
