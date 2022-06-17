@@ -1,12 +1,12 @@
+import { useState } from "react"
 import WishlistItem from "./WishlistItem"
 
 function WishlistTable(props) {
-  const { items, sendSelectedItems } = props
-
-  const selectedItems = []
+  const { items, sendSelectedItems, setAllSelectedItems, allSelectedItems } =
+    props
 
   const handleSelectedItems = (item) => {
-    const filteredItems = selectedItems.find((elem) => {
+    const filteredItems = allSelectedItems.find((elem) => {
       if (elem.id === item.id) {
         return true
       }
@@ -14,12 +14,13 @@ function WishlistTable(props) {
     })
 
     if (!filteredItems) {
-      selectedItems.push(item)
+      setAllSelectedItems([...allSelectedItems, item])
     } else {
-      const index = selectedItems.findIndex((elem) => elem.id === item.id)
-      selectedItems.splice(index, 1)
+      const copySelectedItems = [...allSelectedItems]
+      const index = copySelectedItems.findIndex((elem) => elem.id === item.id)
+
+      setAllSelectedItems(copySelectedItems.splice(index, 1))
     }
-    sendSelectedItems(selectedItems)
   }
 
   const filterItems = items.filter((item) => {

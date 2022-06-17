@@ -1,18 +1,16 @@
 function AddItemsToCart(props) {
   const { selectedItems, sendItemsToCart } = props
-
   console.log(selectedItems)
 
-  let finalItems = []
-  // console.log(selectedItems)
+  let finalItems = [...selectedItems]
 
   // filter for removed objects
-  finalItems.forEach((element) => {
-    if (element.favorite === false) {
-      let index = finalItems.map((obj) => obj.id).indexOf(element.id)
-      finalItems.splice(index, 1)
-    }
-  })
+  // finalItems.forEach((element) => {
+  //   if (element.favorite === false) {
+  //     let index = finalItems.map((obj) => obj.id).indexOf(element.id)
+  //     finalItems.splice(index, 1)
+  //   }
+  // })
 
   let totalPrice = 0
   finalItems.forEach((item) => {

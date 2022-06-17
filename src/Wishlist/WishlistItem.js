@@ -7,7 +7,7 @@ import { AppContext } from "../AppProvider"
 function WishlistItem(props) {
   const { item, handleSelectedItems } = props
   const [isChecked, setChecked] = useState(false)
-  const { toggleFavorite, allSizes } = useContext(AppContext)
+  const { toggleFavorite } = useContext(AppContext)
 
   const [selectedSize, setSelectedSize] = useState()
   const [selectedColor, setSelectedColor] = useState()
