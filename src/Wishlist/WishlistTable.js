@@ -6,13 +6,20 @@ function WishlistTable(props) {
   const selectedItems = []
 
   const handleSelectedItems = (item) => {
-    if (!selectedItems.includes(item)) {
+    const filteredItems = selectedItems.find((elem) => {
+      if (elem.id === item.id) {
+        return true
+      }
+      return false
+    })
+
+    if (!filteredItems) {
       selectedItems.push(item)
     } else {
-      const index = selectedItems.map((obj) => obj.id).indexOf(item.id)
+      const index = selectedItems.findIndex((elem) => elem.id === item.id)
       selectedItems.splice(index, 1)
     }
-    console.log(selectedItems)
+    sendSelectedItems(selectedItems)
   }
 
   const filterItems = items.filter((item) => {

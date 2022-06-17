@@ -53,7 +53,6 @@ function ItemDetails(props) {
         favorite: item[0].favorite,
         quantity: item[0].quantity,
       }
-      console.log(newItem)
       addToCart(newItem)
     }
   }

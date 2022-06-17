@@ -17,7 +17,7 @@ const AppProvider = ({ children }) => {
       gender: "male",
       release_year: 2017,
       onSale: false,
-      favorite: false,
+      favorite: true,
       quantity: 0,
     },
     {
@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
       gender: "male",
       release_year: 2018,
       onSale: false,
-      favorite: false,
+      favorite: true,
       quantity: 12,
     },
     {
@@ -45,7 +45,7 @@ const AppProvider = ({ children }) => {
       gender: "male",
       release_year: 2018,
       onSale: false,
-      favorite: false,
+      favorite: true,
       quantity: 17,
     },
     {
@@ -59,7 +59,7 @@ const AppProvider = ({ children }) => {
       gender: "male",
       release_year: 2017,
       onSale: false,
-      favorite: false,
+      favorite: true,
       quantity: 18,
     },
     {
@@ -73,7 +73,7 @@ const AppProvider = ({ children }) => {
       gender: "male",
       release_year: 2022,
       onSale: true,
-      favorite: false,
+      favorite: true,
       quantity: 7,
     },
     {
@@ -302,12 +302,12 @@ const AppProvider = ({ children }) => {
     },
   ])
 
+  const allSizes = [38, 39, 40, 41, 42, 43, 44, 45]
+
   const [cartItems, setCartItems] = useState([])
 
-  const addToCart = (item) => {
-    let tempCartItems = [...cartItems]
-
-    const itemToAdd = {
+  const createCartItem = (item) => {
+    return {
       id: cartItems.length,
       itemId: item.id,
       img: item.img,
@@ -322,12 +322,13 @@ const AppProvider = ({ children }) => {
       quantity: item.quantity,
       inCart: 0,
     }
-    tempCartItems.push(itemToAdd)
+  }
 
-    // for (let index = 0; index < tempCartItems.length; index++) {
-    //   const element = tempCartItems[index]
-    //   if(element.itemId ===)
-    // }
+  const addToCart = (item) => {
+    let tempCartItems = [...cartItems]
+    const itemToAdd = createCartItem(item)
+
+    tempCartItems.push(itemToAdd)
 
     setCartItems(tempCartItems)
   }
@@ -343,7 +344,7 @@ const AppProvider = ({ children }) => {
   }
   return (
     <AppContext.Provider
-      value={{ items, cartItems, toggleFavorite, addToCart }}
+      value={{ items, cartItems, allSizes, toggleFavorite, addToCart }}
     >
       {children}
     </AppContext.Provider>

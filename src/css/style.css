@@ -809,12 +809,28 @@ ul li {
           flex-direction: column;
   height: 500px;
   overflow-y: auto;
+  padding: 0 25px 20px 25px;
 }
 
 .wishlist-container .item-wrapper > input:checked + label {
   border: 3px solid black;
   -webkit-transition: 0.1s;
   transition: 0.1s;
+}
+
+.wishlist-container .item-wrapper.unavailable {
+  opacity: 0.5;
+  position: relative;
+}
+
+.wishlist-container .item-wrapper.unavailable .itemUnavailable {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 15;
+  opacity: 1;
 }
 
 .wishlist-container .item-wrapper > input {
@@ -825,6 +841,12 @@ ul li {
 .wishlist-container .wishlist-item {
   position: relative;
   width: 100%;
+  margin-top: 13px;
+  background-color: white;
+}
+
+.wishlist-container .item-wrapper.unavailable .wishlist-item label {
+  cursor: default;
 }
 
 .wishlist-container .wishlist-item label {
@@ -837,7 +859,9 @@ ul li {
           flex-direction: row;
   width: 100%;
   height: 70px;
-  border: 1px solid black;
+  -webkit-box-shadow: 2px 2px 2px #e4e4e4;
+          box-shadow: 2px 2px 2px #e4e4e4;
+  cursor: pointer;
 }
 
 .wishlist-container .wishlist-item label img {
@@ -850,9 +874,24 @@ ul li {
 }
 
 .wishlist-container .item-wrapper input:checked + .wishlist-item {
-  border: 3px solid;
+  -webkit-box-shadow: 0 3px 13px black;
+          box-shadow: 0 3px 13px black;
   -webkit-transition: 0.1s;
   transition: 0.1s;
+}
+
+.wishlist-container .wishlist-item .clickableThings {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 50%;
+}
+
+.wishlist-container .wishlist-item .clickableThings select {
+  font-size: 20px;
+  margin-right: 15px;
 }
 
 .wishlist-container .wishlist-item i svg {
@@ -864,9 +903,31 @@ ul li {
   font-size: 30px;
   border: 1px solid black;
   border-radius: 50%;
+  cursor: pointer;
 }
 
-.wishlist-container .wishlist-item i svg.active {
-  color: #cf0a2c;
+.wishlist-container .wishlist-item .linkToItem {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wishlist-container .addToCart {
+  padding-left: 50px;
+}
+
+.wishlist-container .addToCart button {
+  width: 140px;
+  height: 40px;
+  background-color: #cf0a2c;
+  color: white;
+  outline: none;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { AppContext } from "../AppProvider"
 import SizeChunk from "./SizeChunk"
 
-const allSizes = [38, 39, 40, 41, 42, 43, 44, 45]
-
 function SizeTable(props) {
+  const { allSizes } = useContext(AppContext)
   const { availableSizes, itemQuantity, handleSizePicker } = props
   const [radioChecked, setRadioChecked] = useState(null)
 
