@@ -90,30 +90,12 @@
     border: 1px solid black;
   }
 
-  // .colorTable {
-  //   margin: 15px 0;
-  //   width: 300px;
-  //   display: grid;
-  //   grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  //   row-gap: 3px;
-  //   column-gap: 3px;
-
-  //   .colorChunk {
-  //     background-color: $grey;
-  //     padding: 3px;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     width: 70px;
-  //     height: 40px;
-  //     cursor: pointer;
-
-  //     &.deactivated {
-  //       opacity: 0.5;
-  //       cursor: default;
-  //     }
-  //   }
-  // }
+  #quantityPicker {
+    margin-left: 7px;
+    width: 55px;
+    height: 35px;
+    font-size: 20px;
+  }
 
   .addToCart {
     display: block;

@@ -5,36 +5,44 @@ import { useNavigate } from "react-router-dom"
 import { AppContext } from "../AppProvider"
 
 function WishlistItem(props) {
-  const { item, handleSelectedItems } = props
+  const { item, handleSelectedItems, removeItemById } = props
   const [isChecked, setChecked] = useState(false)
   const { toggleFavorite } = useContext(AppContext)
 
   const [selectedSize, setSelectedSize] = useState()
   const [selectedColor, setSelectedColor] = useState()
 
+  const [quantity, setQuantity] = useState(1)
+
   const navigate = useNavigate()
 
-  const handleChange = () => {
-    setChecked(!isChecked)
-    const itemToPush = {
-      id: item.id,
-      img: item.img,
-      model: item.model,
-      color: selectedColor,
-      size: selectedSize,
-      price: item.price,
-      gender: item.gender,
-      release_year: item.release_year,
-      onSale: item.onSale,
-      favorite: item.favorite,
-      quantity: item.quantity,
-      inCart: 0,
+  const handleChange = (e) => {
+    if (e.target.id === "quantityPicker") {
+      const value = e.target.value
+      if (value > 0 && value <= item.quantity) setQuantity(value)
+    } else {
+      setChecked(!isChecked)
+      const itemToPush = {
+        id: item.id,
+        img: item.img,
+        model: item.model,
+        color: selectedColor,
+        size: selectedSize,
+        price: item.price,
+        gender: item.gender,
+        release_year: item.release_year,
+        onSale: item.onSale,
+        favorite: item.favorite,
+        quantity: quantity,
+        inCart: 0,
+      }
+      handleSelectedItems(itemToPush)
     }
-    handleSelectedItems(itemToPush)
   }
 
   const handleClick = (opt) => {
     if (opt === "remove") {
+      removeItemById(item.id)
       toggleFavorite(item.id)
     }
     if (opt === "nav") {
@@ -99,6 +107,13 @@ function WishlistItem(props) {
         </label>
 
         <div className='clickableThings'>
+          <input
+            id='quantityPicker'
+            type='number'
+            value={quantity}
+            onChange={handleChange}
+          />
+
           <select id='sizesSelect' onChange={(e) => handleSelect(e.target)}>
             <option>none</option>
             {sizes}

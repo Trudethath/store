@@ -2,11 +2,17 @@ import WishlistTable from "./WishlistTable"
 import AddItemsToCart from "./AddItemsToCart"
 
 import { AppContext } from "../AppProvider"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 
 function FavoritesLayout() {
   const { items, addToCart } = useContext(AppContext)
   const [allSelectedItems, setAllSelectedItems] = useState([])
+
+  const removeItemById = (id) => {
+    const copySelectedItems = [...allSelectedItems]
+    const newArr = copySelectedItems.filter((elem) => elem.id !== id)
+    setAllSelectedItems(newArr)
+  }
 
   const sendItemsToCart = (items) => {
     console.log("Send")
@@ -21,6 +27,7 @@ function FavoritesLayout() {
             items={items}
             allSelectedItems={allSelectedItems}
             setAllSelectedItems={setAllSelectedItems}
+            removeItemById={removeItemById}
           />
           <AddItemsToCart
             selectedItems={allSelectedItems}

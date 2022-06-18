@@ -18,6 +18,8 @@ function ItemDetails(props) {
   const [showSizeVal, setShowSizeVal] = useState(false)
   const [showColorVal, setShowColorVal] = useState(false)
 
+  const [quantity, setQuantity] = useState(1)
+
   const item = items.filter((item) => item.id === itemId)
 
   const handleSizePicker = (size) => {
@@ -32,6 +34,12 @@ function ItemDetails(props) {
 
   const handleClick = () => {
     toggleFavorite(item[0].id)
+  }
+
+  const handleChange = (e) => {
+    const num = e.target.value
+    console.log(item[0].quantity)
+    if (num <= item[0].quantity && num > 0) setQuantity(num)
   }
 
   const handleAddToCart = (e) => {
@@ -51,7 +59,7 @@ function ItemDetails(props) {
         release_year: item[0].release_year,
         onSale: item[0].onSale,
         favorite: item[0].favorite,
-        quantity: item[0].quantity,
+        quantity: quantity,
       }
       addToCart(newItem)
     }
@@ -104,6 +112,15 @@ function ItemDetails(props) {
             itemQuantity={item[0].quantity}
             handleColorPicker={handleColorPicker}
           />
+          <label>
+            Quantity
+            <input
+              id='quantityPicker'
+              type='number'
+              value={quantity}
+              onChange={handleChange}
+            />
+          </label>
 
           {item[0].quantity <= 0 ? (
             <button className='addToCart deactivated' onClick={handleAddToCart}>

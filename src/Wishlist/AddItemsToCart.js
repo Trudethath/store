@@ -3,19 +3,9 @@ function AddItemsToCart(props) {
 
   let finalItems = [...selectedItems]
 
-  console.log(finalItems)
-
-  // filter for removed objects
-  // finalItems.forEach((element) => {
-  //   if (element.favorite === false) {
-  //     let index = finalItems.map((obj) => obj.id).indexOf(element.id)
-  //     finalItems.splice(index, 1)
-  //   }
-  // })
-
   let totalPrice = 0
   finalItems.forEach((item) => {
-    totalPrice += item.price
+    totalPrice += item.price * item.quantity
   })
 
   const handleClick = () => {
