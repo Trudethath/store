@@ -14,10 +14,6 @@ function FavoritesLayout() {
     setAllSelectedItems(newArr)
   }
 
-  const sendItemsToCart = (items) => {
-    console.log("Send")
-  }
-
   return (
     <div>
       <div className='wishlist-layout'>
@@ -29,10 +25,7 @@ function FavoritesLayout() {
             setAllSelectedItems={setAllSelectedItems}
             removeItemById={removeItemById}
           />
-          <AddItemsToCart
-            selectedItems={allSelectedItems}
-            sendItemsToCart={sendItemsToCart}
-          />
+          <AddItemsToCart selectedItems={allSelectedItems} />
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@ function ItemDetails(props) {
         favorite: item[0].favorite,
         quantity: quantity,
       }
-      addToCart(newItem)
+      addToCart([newItem])
     }
   }
 

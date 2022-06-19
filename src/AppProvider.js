@@ -324,13 +324,10 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  const addToCart = (item) => {
-    let tempCartItems = [...cartItems]
-    const itemToAdd = createCartItem(item)
-
-    tempCartItems.push(itemToAdd)
-
-    setCartItems(tempCartItems)
+  const addToCart = (arr) => {
+    arr.forEach((elem) => {
+      setCartItems((oldArr) => [...oldArr, createCartItem(elem)])
+    })
   }
 
   const toggleFavorite = (id) => {

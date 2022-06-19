@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { AppContext } from "../AppProvider"
+
 function AddItemsToCart(props) {
-  const { selectedItems, sendItemsToCart } = props
+  const { selectedItems } = props
+  const { addToCart } = useContext(AppContext)
 
   let finalItems = [...selectedItems]
 
@@ -9,7 +13,7 @@ function AddItemsToCart(props) {
   })
 
   const handleClick = () => {
-    sendItemsToCart(finalItems)
+    addToCart(finalItems)
   }
 
   const render = (
