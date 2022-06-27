@@ -3,6 +3,7 @@ import WishlistItem from "./WishlistItem"
 function WishlistTable(props) {
   const { items, setAllSelectedItems, allSelectedItems, removeItemById } = props
 
+  // determines which item is currently active
   const handleSelectedItems = (item) => {
     const filteredItems = allSelectedItems.find((elem) => {
       if (elem.id === item.id) {
@@ -21,6 +22,7 @@ function WishlistTable(props) {
     }
   }
 
+  // Displays items with favorite property only
   const filterItems = items.filter((item) => {
     return item.favorite === true
   })

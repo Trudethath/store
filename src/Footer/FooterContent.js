@@ -1,7 +1,7 @@
 import FooterItems from "./FooterItems"
 import Column from "./Column"
-import { GiDonkey } from "react-icons/gi"
 
+import { GiDonkey } from "react-icons/gi"
 import {
   FaInstagram,
   FaFacebookF,

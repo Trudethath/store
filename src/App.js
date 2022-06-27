@@ -14,7 +14,6 @@ function App() {
           <div className='content-wrapper'>
             <Content />
           </div>
-
           <Footer />
         </AppProvider>
       </BrowserRouter>

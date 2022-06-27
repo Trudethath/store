@@ -9,7 +9,7 @@ function AddItemsToCart(props) {
 
   let totalPrice = 0
   finalItems.forEach((item) => {
-    totalPrice += item.price * item.quantity
+    totalPrice += item.price * item.selectedQuantity
   })
 
   const handleClick = () => {

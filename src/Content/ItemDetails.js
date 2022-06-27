@@ -38,7 +38,6 @@ function ItemDetails(props) {
 
   const handleChange = (e) => {
     const num = e.target.value
-    console.log(item[0].quantity)
     if (num <= item[0].quantity && num > 0) setQuantity(num)
   }
 
@@ -59,7 +58,8 @@ function ItemDetails(props) {
         release_year: item[0].release_year,
         onSale: item[0].onSale,
         favorite: item[0].favorite,
-        quantity: quantity,
+        selectedQuantity: quantity,
+        maxQuantity: item[0].quantity,
       }
       addToCart([newItem])
     }

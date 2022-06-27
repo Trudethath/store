@@ -5,6 +5,7 @@ import femaleFootwear from "../src/images/femaleFootwear.png"
 export const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
+  // Array of every item
   const [items, setItems] = useState([
     {
       id: 0,
@@ -302,10 +303,13 @@ const AppProvider = ({ children }) => {
     },
   ])
 
+  // All possible shoe sizes
   const allSizes = [38, 39, 40, 41, 42, 43, 44, 45]
 
+  // Current cart items
   const [cartItems, setCartItems] = useState([])
 
+  // Creates cart object
   const createCartItem = (item) => {
     return {
       id: cartItems.length,
@@ -319,17 +323,19 @@ const AppProvider = ({ children }) => {
       release_year: item.release_year,
       onSale: item.onSale,
       favorite: item.favorite,
-      quantity: item.quantity,
-      inCart: 0,
+      selectedQuantity: item.selectedQuantity,
+      maxQuantity: item.maxQuantity,
     }
   }
 
+  // Adds items to cart
   const addToCart = (arr) => {
     arr.forEach((elem) => {
       setCartItems((oldArr) => [...oldArr, createCartItem(elem)])
     })
   }
 
+  // Toggles Item's favorite property
   const toggleFavorite = (id) => {
     let tempItems = [...items]
     tempItems.forEach((item) => {

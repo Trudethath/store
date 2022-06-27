@@ -4,6 +4,11 @@
   width: 1500px;
   margin: 0 auto;
 
+  .cart-items-wrapper {
+    height: 600px;
+    overflow-y: auto;
+  }
+
   .cart-flexbox {
     display: flex;
     flex-direction: column;

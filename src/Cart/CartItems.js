@@ -4,7 +4,6 @@ import CartItem from "./CartItem"
 
 function CartItems() {
   const { cartItems } = useContext(AppContext)
-  console.log(cartItems)
 
   const mapCartItems = cartItems.map((item, index) => {
     return <CartItem key={index} item={item} />

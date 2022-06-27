@@ -1,13 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
-
 import MenuItems from "./MenuItems"
 import MenuItem from "./MenuItem"
-
 import { GiDonkey } from "react-icons/gi"
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai"
 import { BsCart2 } from "react-icons/bs"
 
+// Generates menu from MenuItems.js file
 const menuItems = MenuItems.map((item) => {
   return <MenuItem key={item.id} item={item} />
 })

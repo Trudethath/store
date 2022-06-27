@@ -1,13 +1,13 @@
 import WishlistTable from "./WishlistTable"
 import AddItemsToCart from "./AddItemsToCart"
-
 import { AppContext } from "../AppProvider"
 import React, { useContext, useState } from "react"
 
-function FavoritesLayout() {
-  const { items, addToCart } = useContext(AppContext)
+function WishlistLayout() {
+  const { items } = useContext(AppContext)
   const [allSelectedItems, setAllSelectedItems] = useState([])
 
+  //removes item from wishlist
   const removeItemById = (id) => {
     const copySelectedItems = [...allSelectedItems]
     const newArr = copySelectedItems.filter((elem) => elem.id !== id)
@@ -32,4 +32,4 @@ function FavoritesLayout() {
   )
 }
 
-export default FavoritesLayout
+export default WishlistLayout

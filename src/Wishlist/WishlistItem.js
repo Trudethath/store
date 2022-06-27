@@ -33,18 +33,20 @@ function WishlistItem(props) {
         release_year: item.release_year,
         onSale: item.onSale,
         favorite: item.favorite,
-        quantity: quantity,
-        inCart: 0,
+        selectedQuantity: quantity,
+        maxQuantity: item.quantity,
       }
       handleSelectedItems(itemToPush)
     }
   }
 
   const handleClick = (opt) => {
+    // Removes item from the list and toggles favorite property
     if (opt === "remove") {
       removeItemById(item.id)
       toggleFavorite(item.id)
     }
+    // Navigates to page with item details
     if (opt === "nav") {
       navigate("/itemDetails", { state: { item: item } })
     }
@@ -88,6 +90,7 @@ function WishlistItem(props) {
     )
   })
 
+  // When item is available
   const itemAvailable = (
     <div className='item-wrapper'>
       <input
@@ -131,6 +134,7 @@ function WishlistItem(props) {
     </div>
   )
 
+  // When item is not available
   const itemUnavailable = (
     <div className='item-wrapper unavailable'>
       <h3 className='itemUnavailable'>Item is unavailable</h3>

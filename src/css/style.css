@@ -767,6 +767,11 @@ ul li {
   margin: 0 auto;
 }
 
+.cart-wrapper .cart-items-wrapper {
+  height: 600px;
+  overflow-y: auto;
+}
+
 .cart-wrapper .cart-flexbox {
   display: -webkit-box;
   display: -ms-flexbox;
