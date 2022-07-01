@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
-function LoginTemplate(props) {
+function LoginTemplate() {
   const [loginText, setLoginText] = useState("")
   const [passwordText, setPasswordText] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
-  const [formSwitch, setFormSwitch] = useState(false)
 
   const handleInputs = (e) => {
     e.preventDefault()

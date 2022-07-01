@@ -1,14 +1,22 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import InfoPopup from "../Popups/InfoPopup"
 
-function LoginTemplate(props) {
+function LoginTemplate() {
   const [emailText, setEmailText] = useState("")
   const [loginText, setLoginText] = useState("")
   const [passwordText, setPasswordText] = useState("")
   const [passwordTextRepeat, setPasswordTextRepeat] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
   const [isPasswordRepeatVisible, setPasswordRepeatVisibility] = useState(false)
+  const [isInfoPopupActive, setInfoPopupActive] = useState(false)
+  const [InfoPopupText, setInfoPopupText] = useState({
+    header: "",
+    text: "",
+    redirectionInfo: "",
+  })
+  let navigate = useNavigate()
 
   const sign_up_url = "http://localhost:3000/api/users/create"
 
@@ -52,7 +60,22 @@ function LoginTemplate(props) {
     axios
       .post(sign_up_url, user)
       .then(function (response) {
-        console.log(response)
+        setInfoPopupText({
+          header: "Success ",
+          text: "Your account has been successfully created.",
+          redirectionInfo: "You will be redirected to login page soon.",
+        })
+        setInfoPopupActive(true)
+        setTimeout(() => {
+          setInfoPopupActive(false)
+          setInfoPopupText({
+            header: "",
+            text: "",
+            redirectionInfo: "",
+          })
+          navigate("/signIn")
+        }, 5000)
+
         return response
       })
       .catch(function (error) {
@@ -145,7 +168,12 @@ function LoginTemplate(props) {
     </div>
   )
 
-  return signUp
+  return (
+    <>
+      <InfoPopup trigger={isInfoPopupActive} infoPopupText={InfoPopupText} />
+      {signUp}
+    </>
+  )
 }
 
 export default LoginTemplate
