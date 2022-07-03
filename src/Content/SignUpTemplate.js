@@ -20,6 +20,15 @@ function LoginTemplate() {
 
   const sign_up_url = "http://localhost:3000/api/users/create"
 
+  const resetSignUpForm = () => {
+    setEmailText("")
+    setLoginText("")
+    setPasswordText("")
+    setPasswordTextRepeat("")
+    setPasswordVisibility(false)
+    setPasswordRepeatVisibility(false)
+  }
+
   const handleInputs = (e) => {
     e.preventDefault()
     switch (e.target.id) {
@@ -48,6 +57,7 @@ function LoginTemplate() {
           password: passwordText,
         }
         register(user)
+
         break
       default:
         break
@@ -74,6 +84,7 @@ function LoginTemplate() {
           navigate("/signIn")
         }, 4000)
 
+        resetSignUpForm()
         return response
       })
       .catch(function (error) {

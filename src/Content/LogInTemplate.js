@@ -2,11 +2,15 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import InfoPopup from "../Popups/InfoPopup"
 import axios from "axios"
+import PopupMessages from "./PopupMessages"
 
 function LoginTemplate() {
   const [loginText, setLoginText] = useState("")
   const [passwordText, setPasswordText] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
+
+  const [isLoginValid, setLoginValid] = useState(false)
+  const [isPasswordValid, setPasswordValid] = useState(false)
 
   const [isInfoPopupActive, setInfoPopupActive] = useState(false)
   const [InfoPopupText, setInfoPopupText] = useState({
@@ -17,6 +21,12 @@ function LoginTemplate() {
   let navigate = useNavigate()
 
   const sign_in_url = "http://localhost:3000/api/auth/login"
+
+  const resetSignInForm = () => {
+    setLoginText("")
+    setPasswordText("")
+    setPasswordVisibility(false)
+  }
 
   const handleInputs = (e) => {
     e.preventDefault()
@@ -36,38 +46,35 @@ function LoginTemplate() {
           password: passwordText,
         }
         login(user)
-        console.log("send data")
         break
       default:
         break
     }
   }
 
+  const errorHandler = () => {}
+
+  const popup = (text, time, navTo = null) => {
+    setInfoPopupText(text)
+    setInfoPopupActive(true)
+    setTimeout(() => {
+      setInfoPopupActive(false)
+      setInfoPopupText("") // reset text
+      if (navTo != null) navigate(navTo)
+    }, time)
+  }
+
   function login(user) {
     axios
       .post(sign_in_url, user)
       .then(function (response) {
-        console.log(response)
-        setInfoPopupText({
-          header: "Success ",
-          text: "You have successfully logged in.",
-          redirectionInfo: "You will be redirected to main page soon.",
-        })
-        setInfoPopupActive(true)
-        setTimeout(() => {
-          setInfoPopupActive(false)
-          setInfoPopupText({
-            header: "",
-            text: "",
-            redirectionInfo: "",
-          })
-          navigate("/")
-        }, 4000)
-
+        popup(PopupMessages.userLoggedIn, 4000, "/")
+        resetSignInForm()
         return response
       })
       .catch(function (error) {
-        console.log(error)
+        errorHandler(error)
+        popup(PopupMessages.unauthorizedUser, 3000)
         return error
       })
   }
