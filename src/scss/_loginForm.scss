@@ -48,7 +48,6 @@
 
     .label-checkbox {
       display: block;
-      position: absolute;
       margin-top: 7px;
       cursor: pointer;
 
@@ -59,10 +58,6 @@
       span {
         display: inline;
       }
-
-      &.terms {
-        margin-top: 20px;
-      }
     }
 
     input[type="text"]::placeholder,
@@ -70,6 +65,10 @@
     input[type="password"]::placeholder {
       color: grey;
       opacity: 0.5;
+    }
+
+    .invalid {
+      color: $red;
     }
   }
 
@@ -83,6 +82,10 @@
     background-color: white;
     text-decoration: underline;
     cursor: pointer;
+
+    span {
+      margin: 5px;
+    }
   }
 
   .forgot-password {
@@ -106,7 +109,7 @@
   }
 
   #submit {
-    margin-top: 70px;
+    margin-top: 40px;
     outline: none;
     border: none;
     background-color: $red;

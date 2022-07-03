@@ -669,7 +669,6 @@ ul li {
 
 .login-wrapper .login-form .label-checkbox {
   display: block;
-  position: absolute;
   margin-top: 7px;
   cursor: pointer;
 }
@@ -680,10 +679,6 @@ ul li {
 
 .login-wrapper .login-form .label-checkbox span {
   display: inline;
-}
-
-.login-wrapper .login-form .label-checkbox.terms {
-  margin-top: 20px;
 }
 
 .login-wrapper .login-form input[type="text"]::-webkit-input-placeholder,
@@ -714,6 +709,10 @@ ul li {
   opacity: 0.5;
 }
 
+.login-wrapper .login-form .invalid {
+  color: #cf0a2c;
+}
+
 .login-wrapper .change-password-visibility {
   outline: none;
   border: none;
@@ -724,6 +723,10 @@ ul li {
   background-color: white;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.login-wrapper .change-password-visibility span {
+  margin: 5px;
 }
 
 .login-wrapper .forgot-password {
@@ -747,7 +750,7 @@ ul li {
 }
 
 .login-wrapper #submit {
-  margin-top: 70px;
+  margin-top: 40px;
   outline: none;
   border: none;
   background-color: #cf0a2c;

@@ -9,9 +9,6 @@ function LoginTemplate() {
   const [passwordText, setPasswordText] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
 
-  const [isLoginValid, setLoginValid] = useState(false)
-  const [isPasswordValid, setPasswordValid] = useState(false)
-
   const [isInfoPopupActive, setInfoPopupActive] = useState(false)
   const [InfoPopupText, setInfoPopupText] = useState({
     header: "",
@@ -52,8 +49,6 @@ function LoginTemplate() {
     }
   }
 
-  const errorHandler = () => {}
-
   const popup = (text, time, navTo = null) => {
     setInfoPopupText(text)
     setInfoPopupActive(true)
@@ -73,9 +68,15 @@ function LoginTemplate() {
         return response
       })
       .catch(function (error) {
-        errorHandler(error)
-        popup(PopupMessages.unauthorizedUser, 3000)
-        return error
+        const { status } = error.response
+
+        switch (status) {
+          case 401:
+            popup(PopupMessages.unauthorizedUser, 3000)
+            return error
+          default:
+            popup(PopupMessages.uniError, 3000)
+        }
       })
   }
 

@@ -6,8 +6,8 @@ function InfoPopup(props) {
         <h3>{infoPopupText.header}</h3>
       </div>
       <div className='lower'>
-        <p>{infoPopupText.text}</p>
-        <h5>{infoPopupText.redirectionInfo}</h5>
+        <span>{infoPopupText.text}</span>
+        <h5>{infoPopupText.secondaryText}</h5>
       </div>
     </div>
   ) : null

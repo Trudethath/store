@@ -2,14 +2,21 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import InfoPopup from "../Popups/InfoPopup"
+import PopupMessages from "./PopupMessages"
 
 function LoginTemplate() {
+  // Input states
   const [emailText, setEmailText] = useState("")
   const [loginText, setLoginText] = useState("")
   const [passwordText, setPasswordText] = useState("")
-  const [passwordTextRepeat, setPasswordTextRepeat] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
-  const [isPasswordRepeatVisible, setPasswordRepeatVisibility] = useState(false)
+  const [isPolicyAccepted, setPolicyAccepted] = useState(false)
+
+  // Validation states
+  const [isEmailValid, setEmailValid] = useState(true)
+  const [isUsernameValid, setUsernameValid] = useState(true)
+  const [isPasswordValid, setPasswordValid] = useState(true)
+
   const [isInfoPopupActive, setInfoPopupActive] = useState(false)
   const [InfoPopupText, setInfoPopupText] = useState({
     header: "",
@@ -20,15 +27,41 @@ function LoginTemplate() {
 
   const sign_up_url = "http://localhost:3000/api/users/create"
 
+  const checkIfEmailIsValid = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
   const resetSignUpForm = () => {
     setEmailText("")
     setLoginText("")
     setPasswordText("")
-    setPasswordTextRepeat("")
     setPasswordVisibility(false)
-    setPasswordRepeatVisibility(false)
   }
 
+  const errorHandler = () => {
+    if (!checkIfEmailIsValid(emailText)) {
+      console.log("not email")
+      setEmailValid(false)
+    } else setEmailValid(true)
+    if (loginText.length < 3) {
+      console.log("invalid username")
+      setUsernameValid(false)
+    } else setUsernameValid(true)
+    if (passwordText.length < 6) {
+      console.log("invalid password")
+      setPasswordValid(false)
+    } else setPasswordValid(true)
+    if (!isPolicyAccepted) {
+      console.log("policy is not accepted")
+      setPolicyAccepted(false)
+    } else setPolicyAccepted(true)
+  }
+
+  const handleCheckbox = (e) => {
+    setPolicyAccepted(!isPolicyAccepted)
+  }
+
+  // Updates state with input texts
   const handleInputs = (e) => {
     e.preventDefault()
     switch (e.target.id) {
@@ -41,14 +74,8 @@ function LoginTemplate() {
       case "password":
         setPasswordText(e.target.value)
         break
-      case "passwordRepeat":
-        setPasswordTextRepeat(e.target.value)
-        break
       case "passwordVisible":
         setPasswordVisibility(!isPasswordVisible)
-        break
-      case "passwordRepeatVisible":
-        setPasswordRepeatVisibility(!isPasswordRepeatVisible)
         break
       case "submit":
         const user = {
@@ -57,38 +84,58 @@ function LoginTemplate() {
           password: passwordText,
         }
         register(user)
-
         break
       default:
         break
     }
   }
 
+  const popup = (text = "", time = 5000, navTo = null) => {
+    setInfoPopupText(text)
+    setInfoPopupActive(true)
+    setTimeout(() => {
+      setInfoPopupActive(false)
+      setInfoPopupText("") // reset text
+      if (navTo != null) navigate(navTo)
+    }, time)
+  }
+
   function register(user) {
+    errorHandler()
     axios
       .post(sign_up_url, user)
       .then(function (response) {
-        setInfoPopupText({
-          header: "Success ",
-          text: "Your account has been successfully created.",
-          redirectionInfo: "You will be redirected to login page soon.",
-        })
-        setInfoPopupActive(true)
-        setTimeout(() => {
-          setInfoPopupActive(false)
-          setInfoPopupText({
-            header: "",
-            text: "",
-            redirectionInfo: "",
-          })
-          navigate("/signIn")
-        }, 4000)
+        popup(PopupMessages.userAccountCreated, 4000, "/signIn")
 
         resetSignUpForm()
         return response
       })
       .catch(function (error) {
-        console.log(error)
+        const { status } = error.response
+
+        let text = ""
+        switch (status) {
+          case 409:
+            text = {
+              header: "Error!",
+              text: error.response.data.message,
+            }
+            break
+          case 400:
+            const { message } = error.response.data
+            const formattedMessage = message.map((msg, index) => {
+              return <li key={index}>{msg}</li>
+            })
+            text = {
+              header: "Error!",
+              text: <ul>{formattedMessage}</ul>,
+            }
+            break
+          default:
+            break
+        }
+
+        popup(text, 4000)
         return error
       })
   }
@@ -113,6 +160,7 @@ function LoginTemplate() {
               placeholder='e-mail address'
               value={emailText}
               onChange={handleInputs}
+              className={`${!isEmailValid ? "invalid" : ""}`}
             />
             <label htmlFor='username'>
               <h2>Username</h2>
@@ -123,6 +171,7 @@ function LoginTemplate() {
               placeholder='username'
               value={loginText}
               onChange={handleInputs}
+              className={`${!isUsernameValid ? "invalid" : ""}`}
             />
 
             <label htmlFor='password'>
@@ -134,6 +183,7 @@ function LoginTemplate() {
               placeholder='password'
               value={passwordText}
               onChange={handleInputs}
+              className={`${!isPasswordValid ? "invalid" : ""}`}
             />
             <button
               className='change-password-visibility'
@@ -146,41 +196,30 @@ function LoginTemplate() {
               )}
             </button>
 
-            <label htmlFor='passwordRepeat'>
-              <h2>Repeat password</h2>
-            </label>
-            <input
-              id='passwordRepeat'
-              type={isPasswordRepeatVisible ? "text" : "password"}
-              placeholder='repeat password'
-              value={passwordTextRepeat}
-              onChange={handleInputs}
-            />
             <button
               className='change-password-visibility'
               onClick={handleInputs}
-            >
-              {isPasswordRepeatVisible ? (
-                <span id='passwordRepeatVisible'>Hide</span>
-              ) : (
-                <span id='passwordRepeatVisible'>Show</span>
-              )}
-            </button>
+            ></button>
             <label className='label-checkbox'>
               <input type='checkbox' />
               <span>Newsletter</span>
             </label>
 
-            <button id='submit' onClick={handleInputs}>
-              Sign up
-            </button>
-            <label className='label-checkbox terms'>
-              <input type='checkbox' />
-              <span>
+            <label id='policyCheckbox' className='label-checkbox terms'>
+              <input
+                type='checkbox'
+                defaultChecked={isPolicyAccepted}
+                onClick={handleCheckbox}
+              />
+              <span className={`${!isPolicyAccepted ? "invalid" : ""}`}>
                 I accept the <u>Terms & Conditions</u> and{" "}
                 <u>Privacy Policy.</u>
               </span>
             </label>
+
+            <button id='submit' onClick={handleInputs}>
+              Sign up
+            </button>
           </form>
         </div>
       </div>
