@@ -345,6 +345,7 @@ const AppProvider = ({ children }) => {
     })
     setItems(tempItems)
   }
+
   return (
     <AppContext.Provider
       value={{ items, cartItems, allSizes, toggleFavorite, addToCart }}
