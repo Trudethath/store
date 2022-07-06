@@ -5,6 +5,7 @@ import MenuItem from "./MenuItem"
 import { GiDonkey } from "react-icons/gi"
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai"
 import { BsCart2 } from "react-icons/bs"
+import authService from "../services/auth.service"
 
 // Generates menu from MenuItems.js file
 const menuItems = MenuItems.map((item) => {
@@ -25,6 +26,7 @@ const Navbar = () => {
           <AiOutlineUser />
           Log in
         </Link>
+        <button onClick={() => authService.logout()}>Log out</button>
         <Link to='wishlist'>
           <AiOutlineHeart />
         </Link>

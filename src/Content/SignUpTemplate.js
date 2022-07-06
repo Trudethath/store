@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import InfoPopup from "../Popups/InfoPopup"
-import PopupMessages from "./PopupMessages"
+import PopupMessages from "../utils/PopupMessages"
+import URLS from "../utils/URLS"
+import authService from "../services/auth.service"
 
 function LoginTemplate() {
   // Input states
@@ -10,7 +12,7 @@ function LoginTemplate() {
   const [loginText, setLoginText] = useState("")
   const [passwordText, setPasswordText] = useState("")
   const [isPasswordVisible, setPasswordVisibility] = useState(false)
-  const [isPolicyAccepted, setPolicyAccepted] = useState(false)
+  const [enablePolicyCheckbox, setEnablePolicyCheckbox] = useState(false)
 
   // Validation states
   const [isEmailValid, setEmailValid] = useState(true)
@@ -24,8 +26,6 @@ function LoginTemplate() {
     redirectionInfo: "",
   })
   let navigate = useNavigate()
-
-  const sign_up_url = "http://localhost:3000/api/users/create"
 
   const checkIfEmailIsValid = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -51,14 +51,10 @@ function LoginTemplate() {
       console.log("invalid password")
       setPasswordValid(false)
     } else setPasswordValid(true)
-    if (!isPolicyAccepted) {
-      console.log("policy is not accepted")
-      setPolicyAccepted(false)
-    } else setPolicyAccepted(true)
   }
 
   const handleCheckbox = (e) => {
-    setPolicyAccepted(!isPolicyAccepted)
+    enablePolicyCheckbox(setEnablePolicyCheckbox)
   }
 
   // Updates state with input texts
@@ -102,11 +98,10 @@ function LoginTemplate() {
 
   function register(user) {
     errorHandler()
-    axios
-      .post(sign_up_url, user)
-      .then(function (response) {
+    authService
+      .register(user)
+      .then((response) => {
         popup(PopupMessages.userAccountCreated, 4000, "/signIn")
-
         resetSignUpForm()
         return response
       })
@@ -208,10 +203,10 @@ function LoginTemplate() {
             <label id='policyCheckbox' className='label-checkbox terms'>
               <input
                 type='checkbox'
-                defaultChecked={isPolicyAccepted}
+                defaultChecked={enablePolicyCheckbox}
                 onClick={handleCheckbox}
               />
-              <span className={`${!isPolicyAccepted ? "invalid" : ""}`}>
+              <span>
                 I accept the <u>Terms & Conditions</u> and{" "}
                 <u>Privacy Policy.</u>
               </span>

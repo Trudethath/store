@@ -1,8 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import InfoPopup from "../Popups/InfoPopup"
 import axios from "axios"
-import PopupMessages from "./PopupMessages"
+import PopupMessages from "../utils/PopupMessages"
+import URLS from "../utils/URLS"
+import AppProvider from "../AppProvider"
+import authService from "../services/auth.service"
 
 function LoginTemplate() {
   const [loginText, setLoginText] = useState("")
@@ -16,8 +19,6 @@ function LoginTemplate() {
     redirectionInfo: "",
   })
   let navigate = useNavigate()
-
-  const sign_in_url = "http://localhost:3000/api/auth/login"
 
   const resetSignInForm = () => {
     setLoginText("")
@@ -60,22 +61,22 @@ function LoginTemplate() {
   }
 
   function login(user) {
-    axios
-      .post(sign_in_url, user)
-      .then(function (response) {
+    authService
+      .login(user)
+      .then((response) => {
         popup(PopupMessages.userLoggedIn, 4000, "/")
         resetSignInForm()
         return response
       })
-      .catch(function (error) {
-        const { status } = error.response
-
+      .catch((error) => {
+        const status = error.response.status
         switch (status) {
           case 401:
             popup(PopupMessages.unauthorizedUser, 3000)
             return error
           default:
             popup(PopupMessages.uniError, 3000)
+            return error
         }
       })
   }

@@ -5,6 +5,8 @@ import femaleFootwear from "../src/images/femaleFootwear.png"
 export const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
+  const { userEmail, setUserEmail } = useState("")
+
   // Array of every item
   const [items, setItems] = useState([
     {
@@ -348,7 +350,15 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ items, cartItems, allSizes, toggleFavorite, addToCart }}
+      value={{
+        items,
+        cartItems,
+        allSizes,
+        toggleFavorite,
+        addToCart,
+        userEmail,
+        setUserEmail,
+      }}
     >
       {children}
     </AppContext.Provider>

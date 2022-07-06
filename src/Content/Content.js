@@ -7,6 +7,7 @@ import LogInTemplate from "./LogInTemplate"
 import SignUpTemplate from "./SignUpTemplate"
 import CartLayout from "../Cart/CartLayout"
 import ItemDetailsLayout from "./ItemDetailsLayout"
+import Profile from "./Profile"
 
 function Content() {
   return (
@@ -22,6 +23,7 @@ function Content() {
       <Route path='/wishlist' element={<WishlistLayout />} />
       <Route path='/cart' element={<CartLayout />} />
       <Route path='/itemDetails' element={<ItemDetailsLayout />} />
+      <Route path='/profile' element={<Profile />} />\
     </Routes>
   )
 }
