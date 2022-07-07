@@ -9,9 +9,6 @@ function App() {
     <>
       <BrowserRouter basename='/'>
         <AppProvider>
-          <Link to='/profile' className='navbar-icon'>
-            profile
-          </Link>
           <Navbar />
           <div className='content-wrapper'>
             <Content />
