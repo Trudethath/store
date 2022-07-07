@@ -1,18 +1,10 @@
-import React, { createContext, useEffect, useState } from "react"
+import React, { createContext, useState } from "react"
 import maleFootwear from "../src/images/maleFootwear.png"
 import femaleFootwear from "../src/images/femaleFootwear.png"
-import { useLocation } from "react-router-dom"
 
 export const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
-  const location = useLocation()
-  const [jwt_token, set_jwt_token] = useState("")
-
-  // useEffect(() => {
-  //   console.log("aa")
-  // }, [location])
-
   // Array of every item
   const [items, setItems] = useState([
     {
@@ -362,8 +354,6 @@ const AppProvider = ({ children }) => {
         allSizes,
         toggleFavorite,
         addToCart,
-        jwt_token,
-        set_jwt_token,
       }}
     >
       {children}

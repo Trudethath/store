@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
-import authService from "../services/auth.service"
 import URLS from "../utils/URLS"
 import authHeader from "../services/auth-header"
 

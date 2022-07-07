@@ -1,10 +1,7 @@
 import React, { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import InfoPopup from "../Popups/InfoPopup"
-import axios from "axios"
 import PopupMessages from "../utils/PopupMessages"
-import URLS from "../utils/URLS"
-import AppProvider from "../AppProvider"
 import authService from "../services/auth.service"
 
 function LoginTemplate() {

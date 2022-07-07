@@ -1,7 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
 import URLS from "../utils/URLS"
-import authHeader from "./auth-header"
 function AuthService() {
   // const [currentUser, setCurrentUser] = useState("")
 
@@ -20,10 +18,6 @@ function AuthService() {
   const register = (user) => {
     return axios.post(URLS.sign_up_url, user)
   }
-
-  // const getData = () => {
-  //   console.log(authHeader)
-  // }
 
   return { login, logout, register }
 }
