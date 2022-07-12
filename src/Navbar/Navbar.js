@@ -6,13 +6,12 @@ import { GiDonkey } from "react-icons/gi"
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai"
 import { BsCart2 } from "react-icons/bs"
 import authService from "../services/auth.service"
-import axios from "axios"
-import URLS from "../utils/URLS"
-import authHeader from "../services/auth-header"
+import IsAuthorized from "../services/IsAuthorized"
 
 const Navbar = () => {
-  let navigate = useNavigate()
   const [isUserLogged, setUserLogged] = useState(false)
+
+  let navigate = useNavigate()
 
   // Generates menu from MenuItems.js file
   const menuItems = MenuItems.map((item) => {
@@ -20,16 +19,8 @@ const Navbar = () => {
   })
 
   useEffect(() => {
-    axios
-      .get(URLS.get_profile_url, authHeader())
-      .then((response) => {
-        setUserLogged(true)
-        return response
-      })
-      .catch((error) => {
-        setUserLogged(false)
-        return error
-      })
+    if (IsAuthorized()) setUserLogged(true)
+    else setUserLogged(false)
   })
 
   const userNotLoggedIn = (
@@ -40,20 +31,20 @@ const Navbar = () => {
   )
 
   const userLoggedIn = (
-    <>
+    <span>
       <Link to='profile'>
         <AiOutlineUser />
         Profile
       </Link>
-      <button
+      <span
         onClick={() => {
           authService.logout()
           navigate("/")
         }}
       >
         Log out
-      </button>
-    </>
+      </span>
+    </span>
   )
 
   return (

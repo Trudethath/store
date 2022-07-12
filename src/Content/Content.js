@@ -19,7 +19,7 @@ function Content() {
       <Route path='/women' element={<ItemsLayout />} />
       <Route path='/all' element={<ItemsLayout />} />
       <Route path='/signIn' element={<LogInTemplate />} />
-      <Route path='/signUp' element={<SignUpTemplate />} />
+      <Route path='/signUp' element={<SignUpTemplate />} />( )
       <Route path='/wishlist' element={<WishlistLayout />} />
       <Route path='/cart' element={<CartLayout />} />
       <Route path='/itemDetails' element={<ItemDetailsLayout />} />
