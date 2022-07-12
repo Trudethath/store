@@ -1,23 +1,23 @@
-import React from "react"
-import { Link, useNavigate } from "react-router-dom"
+import React, { useEffect, useContext } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import MenuItems from "./MenuItems"
 import MenuItem from "./MenuItem"
 import { GiDonkey } from "react-icons/gi"
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai"
 import { BsCart2 } from "react-icons/bs"
-import authService from "../services/auth.service"
-
+import { AuthContext } from "../auth/AuthProvider"
 const Navbar = () => {
-  let navigate = useNavigate()
-
+  const location = useLocation()
+  const { signout, user } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || "/"
   // Generates menu from MenuItems.js file
   const menuItems = MenuItems.map((item) => {
     return <MenuItem key={item.id} item={item} />
   })
 
   // useEffect(() => {
-  //   if (IsAuthorized()) setUserLogged(true)
-  //   else setUserLogged(false)
+
   // })
 
   const userNotLoggedIn = (
@@ -35,8 +35,7 @@ const Navbar = () => {
       </Link>
       <span
         onClick={() => {
-          authService.logout()
-          navigate("/")
+          signout(() => navigate(from, { replace: true }))
         }}
       >
         Log out
@@ -53,9 +52,9 @@ const Navbar = () => {
       </h1>
       <ul className='menu-items'>{menuItems}</ul>
       <div className='user-side'>
-        {/* {isUserLogged ? userLoggedIn : userNotLoggedIn} */}
-        {userLoggedIn}
-        {userNotLoggedIn}
+        {user ? userLoggedIn : userNotLoggedIn}
+        {/* {userLoggedIn}
+        {userNotLoggedIn} */}
         <Link to='wishlist'>
           <AiOutlineHeart />
         </Link>

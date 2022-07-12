@@ -12,8 +12,9 @@ const AuthProvider = ({ children }) => {
   }
 
   const signout = (callback) => {
+    localStorage.removeItem("token")
     setUser(null)
-    return true
+    callback()
   }
 
   //POST
@@ -28,9 +29,18 @@ const AuthProvider = ({ children }) => {
     })
   }
 
-  const post_signup = () => {
-    // ...
-    return true
+  const post_signup = (user, callback) => {
+    return axios
+      .post(URLS.sign_up_url, user)
+      .then((response) => {
+        console.log("good")
+        callback()
+        return response
+      })
+      .catch((error) => {
+        console.log("bad")
+        return error
+      })
   }
 
   const value = { user, signin, signout, post_signin, post_signup }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import URLS from "../utils/URLS"
-import authHeader from "../services/auth-header"
+import authHeader from "../auth/authHeader"
 
 function Protected() {
   const [email, setEmail] = useState("")
@@ -18,7 +18,7 @@ function Protected() {
       })
   }, [])
 
-  return email ? email : "You must be logged in."
+  return email ? email : "Couldn't find your email "
 }
 
 export default Protected

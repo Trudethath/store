@@ -1,8 +1,6 @@
-import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import InfoPopup from "../Popups/InfoPopup"
-import PopupMessages from "../utils/PopupMessages"
-import authService from "../services/auth.service"
+import React, { useState, useContext } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
+import { AuthContext } from "../auth/AuthProvider"
 
 function LoginTemplate() {
   // Input states
@@ -16,43 +14,45 @@ function LoginTemplate() {
   const [isEmailValid, setEmailValid] = useState(true)
   const [isUsernameValid, setUsernameValid] = useState(true)
   const [isPasswordValid, setPasswordValid] = useState(true)
+  const [policyAccepted, setPolicyAccepted] = useState(true)
 
-  const [isInfoPopupActive, setInfoPopupActive] = useState(false)
-  const [InfoPopupText, setInfoPopupText] = useState({
-    header: "",
-    text: "",
-    redirectionInfo: "",
-  })
-  let navigate = useNavigate()
+  const location = useLocation()
+  const { post_signup } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || "/signIn"
 
   const checkIfEmailIsValid = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
 
-  const resetSignUpForm = () => {
-    setEmailText("")
-    setLoginText("")
-    setPasswordText("")
-    setPasswordVisibility(false)
-  }
-
-  const errorHandler = () => {
-    if (!checkIfEmailIsValid(emailText)) {
-      console.log("not email")
-      setEmailValid(false)
-    } else setEmailValid(true)
-    if (loginText.length < 3) {
-      console.log("invalid username")
-      setUsernameValid(false)
-    } else setUsernameValid(true)
-    if (passwordText.length < 6) {
-      console.log("invalid password")
-      setPasswordValid(false)
-    } else setPasswordValid(true)
-  }
-
   const handleCheckbox = (e) => {
-    enablePolicyCheckbox(setEnablePolicyCheckbox)
+    setEnablePolicyCheckbox(!enablePolicyCheckbox)
+  }
+
+  const validateForm = () => {
+    if (checkIfEmailIsValid(emailText)) setEmailValid(true)
+    else {
+      setEmailValid(false)
+      console.log("email invalid")
+    }
+
+    if (loginText !== "" && loginText.length >= 3) setUsernameValid(true)
+    else {
+      setUsernameValid(false)
+      console.log("login invalid")
+    }
+
+    if (passwordText !== "" && passwordText.length >= 6) setPasswordValid(true)
+    else {
+      setPasswordValid(false)
+      console.log("pass invalid")
+    }
+
+    if (enablePolicyCheckbox !== false) setPolicyAccepted(true)
+    else {
+      setPolicyAccepted(false)
+      console.log("policy invalid")
+    }
   }
 
   // Updates state with input texts
@@ -72,70 +72,28 @@ function LoginTemplate() {
         setPasswordVisibility(!isPasswordVisible)
         break
       case "submit":
-        const user = {
-          username: loginText,
-          email: emailText,
-          password: passwordText,
+        validateForm()
+        if (
+          isEmailValid &&
+          isUsernameValid &&
+          isPasswordValid &&
+          policyAccepted
+        ) {
+          const user = {
+            username: loginText,
+            email: emailText,
+            password: passwordText,
+          }
+          post_signup(user, () => navigate(from, { replace: true }))
         }
-        register(user)
         break
       default:
         break
     }
   }
 
-  const popup = (text = "", time = 5000, navTo = null) => {
-    setInfoPopupText(text)
-    setInfoPopupActive(true)
-    setTimeout(() => {
-      setInfoPopupActive(false)
-      setInfoPopupText("") // reset text
-      if (navTo != null) navigate(navTo)
-    }, time)
-  }
-
-  function register(user) {
-    errorHandler()
-    authService
-      .register(user)
-      .then((response) => {
-        popup(PopupMessages.userAccountCreated, 4000, "/signIn")
-        resetSignUpForm()
-        return response
-      })
-      .catch(function (error) {
-        const { status } = error.response
-
-        let text = ""
-        switch (status) {
-          case 409:
-            text = {
-              header: "Error!",
-              text: error.response.data.message,
-            }
-            break
-          case 400:
-            const { message } = error.response.data
-            const formattedMessage = message.map((msg, index) => {
-              return <li key={index}>{msg}</li>
-            })
-            text = {
-              header: "Error!",
-              text: <ul>{formattedMessage}</ul>,
-            }
-            break
-          default:
-            break
-        }
-
-        popup(text, 4000)
-        return error
-      })
-  }
-
   return (
     <>
-      <InfoPopup trigger={isInfoPopupActive} infoPopupText={InfoPopupText} />
       <div className='login-wrapper'>
         <div className='switchers'>
           <Link to='/signIn'>
