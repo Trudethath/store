@@ -8,6 +8,7 @@ import SignUpTemplate from "./SignUpTemplate"
 import CartLayout from "../Cart/CartLayout"
 import ItemDetailsLayout from "./ItemDetailsLayout"
 import Profile from "./Profile"
+import RequireAuth from "../auth/RequireAuth"
 
 function Content() {
   return (
@@ -19,11 +20,25 @@ function Content() {
       <Route path='/women' element={<ItemsLayout />} />
       <Route path='/all' element={<ItemsLayout />} />
       <Route path='/signIn' element={<LogInTemplate />} />
-      <Route path='/signUp' element={<SignUpTemplate />} />( )
-      <Route path='/wishlist' element={<WishlistLayout />} />
-      <Route path='/cart' element={<CartLayout />} />
+      <Route path='/signUp' element={<SignUpTemplate />} />
+      <Route
+        path='/wishlist'
+        element={
+          <RequireAuth>
+            <WishlistLayout />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path='/cart'
+        element={
+          <RequireAuth>
+            <CartLayout />
+          </RequireAuth>
+        }
+      />
       <Route path='/itemDetails' element={<ItemDetailsLayout />} />
-      <Route path='/profile' element={<Profile />} />\
+      <Route path='/profile' element={<Profile />} />
     </Routes>
   )
 }
