@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
 import SimpleImageSlider from "react-simple-image-slider"
-import { AppContext } from "../AppProvider"
 import Carousel from "./Carousel"
 import Item from "./Item"
 import image1 from "../images/1.png"
@@ -20,23 +20,75 @@ const images = [
 ]
 
 function Home() {
-  const { items } = useContext(AppContext)
-  // this year's collection
-  const newestItems = items.filter((item) => {
-    return item.release_year === new Date().getFullYear()
-  })
+  // const { items } = useContext(AppContext)
+  // // this year's collection
+  // const newestItems = items.filter((item) => {
+  //   return item.release_year === new Date().getFullYear()
+  // })
 
-  const itemsOnSale = items.filter((item) => {
-    return item.onSale
-  })
+  // const itemsOnSale = items.filter((item) => {
+  //   return item.onSale
+  // })
 
-  const carouselItemsNew = newestItems.map((item) => {
-    return <Item key={item.id} item={item} />
-  })
+  // const carouselItemsNew = newestItems.map((item) => {
+  //   return <Item key={item.id} item={item} />
+  // })
 
-  const carouselItemsSale = itemsOnSale.map((item) => {
-    return <Item key={item.id} item={item} />
-  })
+  // const carouselItemsSale = itemsOnSale.map((item) => {
+  //   return <Item key={item.id} item={item} />
+  // })
+
+  const [data, setData] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [error, setError] = useState(null)
+
+  const queriedData = `
+  query{
+    items{
+      itemId
+      model,
+      gender,
+      release_year,
+      price,
+      onSale,
+      images
+    }
+    }
+  `
+  useEffect(() => {
+    axios
+      .post("http://localhost:3000/graphql/", {
+        query: queriedData,
+      })
+      .then((response) => {
+        setData(response.data.data.items)
+        setIsLoaded(true)
+      })
+      .catch((error) => {
+        setError(error)
+        setIsLoaded(false)
+      })
+  }, [])
+
+  let carouselOnSaleItems = "No items"
+  let carouselNewItems = "No items"
+
+  if (isLoaded) {
+    const newItems = data.filter((item) => {
+      const date = new Date()
+      const year = date.getFullYear()
+      return item.release_year === year
+    })
+
+    carouselNewItems = newItems.map((item) => (
+      <Item key={item.itemId} item={item} />
+    ))
+
+    const itemsOnSale = data.filter((item) => item.onSale)
+    carouselOnSaleItems = itemsOnSale.map((item) => (
+      <Item key={item.itemId} item={item} />
+    ))
+  }
 
   return (
     <div className='home'>
@@ -54,12 +106,16 @@ function Home() {
       <div className='flex-row'>
         <div>
           <h1>This year's collection</h1>
-          <Carousel>{carouselItemsNew}</Carousel>
+          <Carousel>
+            {carouselNewItems.length != 0 ? carouselNewItems : "No items"}
+          </Carousel>
         </div>
 
         <div>
           <h1>Current sale</h1>
-          <Carousel>{carouselItemsSale}</Carousel>
+          <Carousel>
+            {carouselOnSaleItems.length != 0 ? carouselNewItems : "No items"}
+          </Carousel>
         </div>
       </div>
     </div>

@@ -123,7 +123,7 @@ ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: auto;
+  width: 340px;
   height: 340px;
   position: relative;
   padding: 10px;

@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
-import { AppContext } from "../AppProvider"
+import React from "react"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
+import "../images/femaleFootwear1.png"
+import "../images/maleFootwear1.png"
 
 function Item(props) {
   const { item } = props
-  const { toggleFavorite } = useContext(AppContext)
-  const navigate = useNavigate()
+  let navigate = useNavigate()
 
   const handleClick = (option) => {
     switch (option) {
@@ -14,7 +14,7 @@ function Item(props) {
         navigate("/itemDetails", { state: { item: item } })
         break
       case "favorite":
-        toggleFavorite(item.id)
+        // toggleFavorite(item.id)
         break
       default:
         break
@@ -24,26 +24,13 @@ function Item(props) {
   return (
     <div className='item'>
       {item.onSale ? <span className='sale'>SALE</span> : null}
-      {item.favorite === false ? (
-        <BsHeart
-          className='favorite-icon'
-          onClick={() => handleClick("favorite")}
-        />
-      ) : (
-        <BsHeartFill
-          className='favorite-icon icon-active'
-          onClick={() => handleClick("favorite")}
-        />
-      )}
-      <div onClick={() => handleClick("item")}>
-        {item.quantity <= 0 ? (
-          <div>
-            <img className='item-unavaiable' src={item.img} alt={item.model} />
-            <span className='item-unavaiable-text'>OUT OF STOCK</span>
-          </div>
-        ) : (
-          <img src={item.img} alt={item.model} />
-        )}
+      <BsHeart className='favorite-icon' />
+      <div
+        onClick={() => {
+          handleClick("item")
+        }}
+      >
+        <img src={require("../images/" + item.images.img1)} alt={item.model} />
         <div className='item-desc'>
           <h4>{item.model}</h4>
           <span className='price'>{item.price} $</span>

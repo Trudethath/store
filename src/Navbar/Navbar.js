@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import MenuItems from "./MenuItems"
 import MenuItem from "./MenuItem"
@@ -15,10 +15,6 @@ const Navbar = () => {
   const menuItems = MenuItems.map((item) => {
     return <MenuItem key={item.id} item={item} />
   })
-
-  // useEffect(() => {
-
-  // })
 
   const userNotLoggedIn = (
     <Link to='signIn'>
