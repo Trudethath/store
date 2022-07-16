@@ -1,21 +1,16 @@
 function SizeTable(props) {
-  const { quantity, handleChange } = props
-  let sizeArray = []
-
-  Object.keys(quantity).forEach((key) => {
-    sizeArray.push(key.replace(/[^0-9]/g, ""))
-  })
+  const { sizeArray, handleChange } = props
 
   const options = sizeArray.map((size) => {
     return (
-      <option key={size} value={size}>
-        {size}
+      <option key={size[0]} value={size[0]}>
+        {size[0]}
       </option>
     )
   })
   return (
     <select id='sizeTable' onChange={handleChange}>
-      <option value='0'></option>
+      <option value={0}></option>
       {options}
     </select>
   )

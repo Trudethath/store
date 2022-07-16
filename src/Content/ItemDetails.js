@@ -15,18 +15,32 @@ function ItemDetails(props) {
   const { user } = useContext(AuthContext)
 
   const [sliderValue, setSliderValue] = useState(1)
+  const [maxSliderValue, setMaxSliderValue] = useState(5)
   const [sizeValue, setSizeValue] = useState(0)
   const [colorValue, setColorValue] = useState(null)
 
   const [isColorActive, setIsColorActive] = useState(false)
   const [isSliderActive, setIsSliderActive] = useState(false)
 
+  let sizeArray = []
+
+  Object.keys(quantity).forEach((key) => {
+    sizeArray.push([key.replace(/[^0-9]/g, ""), quantity[key]])
+  })
+
   useEffect(() => {
-    if (sizeValue !== "0") {
+    if (sizeValue !== 0) {
+      setSliderValue(1)
       setIsColorActive(true)
       setIsSliderActive(true)
+      sizeArray.forEach((elem) => {
+        if (parseInt(elem[0]) === sizeValue) {
+          console.log(elem[0], elem[1])
+          setMaxSliderValue(parseInt(elem[1]))
+        }
+      })
     } else {
-      setSliderValue(1)
+      setSliderValue(0)
       setIsColorActive(false)
       setIsSliderActive(false)
     }
@@ -43,7 +57,7 @@ function ItemDetails(props) {
   const handleChange = (e) => {
     const { id, value } = e.target
     if (id === "sizeTable") {
-      setSizeValue(value)
+      setSizeValue(parseInt(value))
     }
     if (id === "slider") setSliderValue(value)
   }
@@ -56,7 +70,7 @@ function ItemDetails(props) {
         <h3 className='priceTag'>{price} $</h3>
         <form>
           <h4>Pick your size</h4>
-          <SizeTable quantity={quantity} handleChange={handleChange} />
+          <SizeTable sizeArray={sizeArray} handleChange={handleChange} />
 
           <h4>Pick your color</h4>
           <ColorTable isDisabled={!isColorActive} />
@@ -64,14 +78,15 @@ function ItemDetails(props) {
           <div className='slideContainer'>
             <input
               type='range'
-              min='0'
-              max='30'
+              min='1'
+              max={maxSliderValue}
               value={sliderValue}
               className='slider'
               id='slider'
               onChange={handleChange}
               disabled={!isSliderActive}
             />
+            <span>{sliderValue}</span>
           </div>
 
           <button className='addToCart' onClick={handleAddToCart}>
