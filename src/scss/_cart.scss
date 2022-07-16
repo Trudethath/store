@@ -16,11 +16,35 @@
 
     .cart-item {
       display: grid;
-      grid-template-columns: 20% 60% 20%;
+      align-items: center;
+      grid-template-columns: 20% 30% 20% 30%;
       height: 200px;
       img {
         background-color: #fff;
         width: 100%;
+      }
+
+      .total {
+        text-decoration: underline;
+      }
+
+      .clickable {
+        display: flex;
+        height: 100%;
+        align-items: center;
+
+        .link {
+          text-decoration: underline;
+          margin-right: 18px;
+          cursor: pointer;
+        }
+
+        i svg {
+          font-size: 40px;
+          border-radius: 50%;
+          border: 1px solid black;
+          cursor: pointer;
+        }
       }
     }
   }

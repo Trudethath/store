@@ -35,7 +35,6 @@ function ItemDetails(props) {
       setIsSliderActive(true)
       sizeArray.forEach((elem) => {
         if (parseInt(elem[0]) === sizeValue) {
-          console.log(elem[0], elem[1])
           setMaxSliderValue(parseInt(elem[1]))
         }
       })
@@ -46,8 +45,21 @@ function ItemDetails(props) {
     }
   }, [sizeValue])
 
-  const handleAddToCart = () => {
-    console.log("aa")
+  const handleAddToCart = (e) => {
+    e.preventDefault()
+    if (colorValue !== "" && sliderValue !== 0 && sizeValue !== 0) {
+      const cartItem = {
+        item: props.data,
+        chosenParameters: {
+          size: sizeValue,
+          color: colorValue,
+          quantity: sliderValue,
+        },
+      }
+      handleCartItems(cartItem)
+    } else {
+      console.log("error")
+    }
   }
 
   const handleClick = () => {
@@ -56,9 +68,8 @@ function ItemDetails(props) {
 
   const handleChange = (e) => {
     const { id, value } = e.target
-    if (id === "sizeTable") {
-      setSizeValue(parseInt(value))
-    }
+    if (id === "sizeTable") setSizeValue(parseInt(value))
+    if (id === "colorTable") setColorValue(value)
     if (id === "slider") setSliderValue(value)
   }
 
@@ -73,7 +84,7 @@ function ItemDetails(props) {
           <SizeTable sizeArray={sizeArray} handleChange={handleChange} />
 
           <h4>Pick your color</h4>
-          <ColorTable isDisabled={!isColorActive} />
+          <ColorTable isDisabled={!isColorActive} handleChange={handleChange} />
 
           <div className='slideContainer'>
             <input

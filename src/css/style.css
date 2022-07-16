@@ -800,14 +800,44 @@ ul li {
 .cart-wrapper .cart-flexbox .cart-item {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 20% 60% 20%;
-      grid-template-columns: 20% 60% 20%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: 20% 30% 20% 30%;
+      grid-template-columns: 20% 30% 20% 30%;
   height: 200px;
 }
 
 .cart-wrapper .cart-flexbox .cart-item img {
   background-color: #fff;
   width: 100%;
+}
+
+.cart-wrapper .cart-flexbox .cart-item .total {
+  text-decoration: underline;
+}
+
+.cart-wrapper .cart-flexbox .cart-item .clickable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cart-wrapper .cart-flexbox .cart-item .clickable .link {
+  text-decoration: underline;
+  margin-right: 18px;
+  cursor: pointer;
+}
+
+.cart-wrapper .cart-flexbox .cart-item .clickable i svg {
+  font-size: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 .wishlist-layout {

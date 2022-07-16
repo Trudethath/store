@@ -1,27 +1,54 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { BsX } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
+import { AppContext } from "../AppProvider"
 
 function CartItem(props) {
-  const { item } = props
-  console.log(item)
-  const [quantityValue, setQuantityValue] = useState(item.selectedQuantity)
+  const { model, gender, release_year, price, onSale, images, quantity } =
+    props.item.item
+  const { chosenParameters } = props.item // size, color, quantity
+  const { removeItemFromCart } = useContext(AppContext)
+  let navigate = useNavigate()
 
-  // console.log(item)
-
-  const handleChange = (e) => {
-    // console.log(item.quantity, item.selectedQuantity)
+  const handleClick = () => {
+    removeItemFromCart(props.item)
   }
 
   return (
     <div className='cart-item'>
-      <img src={item.img} alt={"image of " + item.model} />
+      <img src={require("../images/" + images.img1)} alt={model} />
       <div>
-        <h3>{item.model}</h3>
-        <h5>{item.gender === "male" ? "Men's" : "Women's"}</h5>
-        <h5>color: {item.color}</h5>
-        <h5>size: {item.size}</h5>
-        <input type='number' value={item.quantity} onChange={handleChange} />
+        <h3>
+          {model} - {price} $
+        </h3>
+        <h5>{gender === "female" ? "Women's" : "Men's"}</h5>
+        <h4>
+          <b>Size: </b> {chosenParameters.size}
+        </h4>
+        <h4>
+          <b>Color: </b> {chosenParameters.color}
+        </h4>
+
+        <h4>
+          <b>Quantity: </b> {chosenParameters.quantity}
+        </h4>
       </div>
-      <div>delivery info</div>
+      <div>
+        <h3 className='total'>
+          <b>Total: {price * chosenParameters.quantity} $</b>
+        </h3>
+      </div>
+      <div className='clickable'>
+        <span
+          className='link'
+          onClick={() => navigate(`/itemDetails/${model}`)}
+        >
+          Go to product
+        </span>
+        <i>
+          <BsX onClick={handleClick} />
+        </i>
+      </div>
     </div>
   )
 }
