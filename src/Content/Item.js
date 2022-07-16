@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../AppProvider"
+import { AuthContext } from "../auth/AuthProvider"
 import "../images/femaleFootwear1.png"
 import "../images/maleFootwear1.png"
 
@@ -9,6 +10,7 @@ function Item(props) {
   const { item } = props
   let navigate = useNavigate()
   const { handleWishlistArray, wishlistArray } = useContext(AppContext)
+  const { user } = useContext(AuthContext)
 
   const handleClick = (option) => {
     switch (option) {
@@ -16,7 +18,7 @@ function Item(props) {
         navigate(`/itemDetails/${item.model}`)
         break
       case "favorite":
-        handleWishlistArray(item.model)
+        handleWishlistArray(item)
         break
       default:
         break
@@ -26,16 +28,20 @@ function Item(props) {
   return (
     <div className='item'>
       {item.onSale ? <span className='sale'>SALE</span> : null}
-      {wishlistArray.includes(item.model) ? (
-        <BsHeartFill
-          className='favorite-icon icon-active'
-          onClick={() => handleClick("favorite")}
-        />
+      {user ? (
+        wishlistArray.some((e) => e.itemId === item.itemId) ? (
+          <BsHeartFill
+            className='favorite-icon icon-active'
+            onClick={() => handleClick("favorite")}
+          />
+        ) : (
+          <BsHeart
+            className='favorite-icon'
+            onClick={() => handleClick("favorite")}
+          />
+        )
       ) : (
-        <BsHeart
-          className='favorite-icon'
-          onClick={() => handleClick("favorite")}
-        />
+        <BsHeart className='favorite-icon disabled-icon' />
       )}
 
       <div

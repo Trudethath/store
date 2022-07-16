@@ -1,4 +1,4 @@
-function ColorTable() {
+function ColorTable(props) {
   let colorArray = ["black", "grey", "green", "yellow", "red"]
 
   const options = colorArray.map((color) => {
@@ -10,7 +10,7 @@ function ColorTable() {
   })
 
   return (
-    <select id='sizes'>
+    <select id='sizes' disabled={props.isDisabled}>
       <option value=''></option>
       {options}
     </select>

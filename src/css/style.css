@@ -161,6 +161,10 @@ ul li {
   right: 25px;
 }
 
+.item .disabled-icon {
+  opacity: 0.2;
+}
+
 .item .sale {
   position: absolute;
   font-weight: 600;

@@ -7,12 +7,20 @@ const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([])
   const [wishlistArray, setWishlistArray] = useState([])
 
+  const handleCartItems = (item) => {
+    console.log(item)
+  }
+
   const handleWishlistArray = (item) => {
-    if (wishlistArray.includes(item)) {
-      const array = wishlistArray.filter((i) => i !== item) // removes item if it exist
-      setWishlistArray(array)
+    const wishlistArrayCopy = [...wishlistArray]
+    if (wishlistArray.some((e) => e.itemId === item.itemId)) {
+      // if array contains item
+      const index = wishlistArrayCopy.indexOf(item)
+      wishlistArrayCopy.splice(index, 1)
+      setWishlistArray(wishlistArrayCopy)
     } else {
-      setWishlistArray([...wishlistArray, item])
+      wishlistArrayCopy.push(item)
+      setWishlistArray(wishlistArrayCopy)
     }
   }
 
@@ -22,6 +30,7 @@ const AppProvider = ({ children }) => {
         cartItems,
         wishlistArray,
         handleWishlistArray,
+        handleCartItems,
       }}
     >
       {children}
