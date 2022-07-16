@@ -52,7 +52,7 @@ function NewItems() {
   return (
     <>
       <div className='items-title'>
-        <h2>New</h2>
+        <h2>New ({itemsToDisplay.length})</h2>
         <div className='items-list'>
           {itemsToDisplay.length !== 0 ? itemsToDisplay : "No new items"}
         </div>

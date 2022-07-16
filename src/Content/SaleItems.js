@@ -47,7 +47,7 @@ function SaleItems() {
   return (
     <>
       <div className='items-title'>
-        <h2>on Sale</h2>
+        <h2>on Sale ({itemsToDisplay.length})</h2>
         <div className='items-list'>
           {itemsToDisplay.length !== 0 ? itemsToDisplay : "No items to show rn"}
         </div>

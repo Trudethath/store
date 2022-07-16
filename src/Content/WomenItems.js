@@ -47,7 +47,7 @@ function WomenItems() {
   return (
     <>
       <div className='items-title'>
-        <h2>Women's</h2>
+        <h2>Women's ({itemsToDisplay.length})</h2>
         <div className='items-list'>
           {itemsToDisplay.length !== 0 ? itemsToDisplay : "No items to show rn"}
         </div>

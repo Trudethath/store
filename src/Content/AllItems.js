@@ -48,7 +48,7 @@ function AllItems() {
   return (
     <>
       <div className='items-title'>
-        <h2>All</h2>
+        <h2>All ({itemsToDisplay.length})</h2>
         <div className='items-list'>
           {itemsToDisplay.length !== 0 ? itemsToDisplay : "No items to show rn"}
         </div>

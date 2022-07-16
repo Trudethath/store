@@ -1,34 +1,25 @@
-import React, { useState, useContext } from "react"
-import { AppContext } from "../AppProvider"
-import SizeChunk from "./SizeChunk"
-
 function SizeTable(props) {
-  const { allSizes } = useContext(AppContext)
-  const { availableSizes, itemQuantity, handleSizePicker } = props
-  const [radioChecked, setRadioChecked] = useState(null)
+  const { quantity } = props
+  let sizeArray = []
 
-  const handleChange = (e) => {
-    const size = e.target.value
-    if (e.target.className === "active") {
-      setRadioChecked(parseInt(size))
-      handleSizePicker(size)
-    } else {
-      handleSizePicker(-1)
-    }
-  }
+  Object.keys(quantity).forEach((key) => {
+    sizeArray.push(key.replace(/[^0-9]/g, ""))
+  })
 
-  const table = allSizes.map((size, index) => (
-    <SizeChunk
-      key={index}
-      size={size}
-      availableSizes={availableSizes}
-      itemQuantity={itemQuantity}
-      radioChecked={radioChecked === size}
-      onChange={handleChange}
-    />
-  ))
+  const options = sizeArray.map((size) => {
+    return (
+      <option key={size} value={size}>
+        {size}
+      </option>
+    )
+  })
 
-  return <div className='sizeTable'>{table}</div>
+  return (
+    <select id='sizes'>
+      <option value=''></option>
+      {options}
+    </select>
+  )
 }
 
 export default SizeTable

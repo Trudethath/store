@@ -1,20 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
+import { AppContext } from "../AppProvider"
 import "../images/femaleFootwear1.png"
 import "../images/maleFootwear1.png"
 
 function Item(props) {
   const { item } = props
   let navigate = useNavigate()
+  const { handleWishlistArray, wishlistArray } = useContext(AppContext)
 
   const handleClick = (option) => {
     switch (option) {
       case "item":
-        navigate("/itemDetails", { state: { item: item } })
+        navigate(`/itemDetails/${item.model}`)
         break
       case "favorite":
-        // toggleFavorite(item.id)
+        handleWishlistArray(item.model)
         break
       default:
         break
@@ -24,7 +26,18 @@ function Item(props) {
   return (
     <div className='item'>
       {item.onSale ? <span className='sale'>SALE</span> : null}
-      <BsHeart className='favorite-icon' />
+      {wishlistArray.includes(item.model) ? (
+        <BsHeartFill
+          className='favorite-icon icon-active'
+          onClick={() => handleClick("favorite")}
+        />
+      ) : (
+        <BsHeart
+          className='favorite-icon'
+          onClick={() => handleClick("favorite")}
+        />
+      )}
+
       <div
         onClick={() => {
           handleClick("item")

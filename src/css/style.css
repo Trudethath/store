@@ -105,8 +105,8 @@ ul li {
 .items-list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -ms-grid-columns: (300px)[4];
+      grid-template-columns: repeat(4, 300px);
   row-gap: 50px;
   -webkit-column-gap: 25px;
           column-gap: 25px;
@@ -262,6 +262,7 @@ ul li {
 }
 
 .newsletter-bar {
+  margin-top: 130px;
   width: 100%;
   background-color: black;
   text-align: center;

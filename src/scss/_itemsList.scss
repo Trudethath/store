@@ -1,6 +1,6 @@
 .items-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 300px);
   row-gap: 50px;
   column-gap: 25px;
   max-width: 1300px;

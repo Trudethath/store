@@ -41,7 +41,7 @@ function Content() {
           </RequireAuth>
         }
       />
-      <Route path='/itemDetails' element={<ItemDetailsLayout />} />
+      <Route path='/itemDetails/:model' element={<ItemDetailsLayout />} />
       <Route path='/profile' element={<Profile />} />
     </Routes>
   )

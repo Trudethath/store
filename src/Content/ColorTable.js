@@ -1,23 +1,20 @@
-import ColorChunk from "./ColorChunk"
+function ColorTable() {
+  let colorArray = ["black", "grey", "green", "yellow", "red"]
 
-function ColorTable(props) {
-  const { availableColors, itemQuantity, handleColorPicker } = props
+  const options = colorArray.map((color) => {
+    return (
+      <option key={color} value={color}>
+        {color}
+      </option>
+    )
+  })
 
-  const handleChange = (e) => {
-    const color = e.target.value
-    handleColorPicker(color)
-  }
-
-  const table = availableColors.map((color, index) => (
-    <ColorChunk
-      key={index}
-      color={color}
-      availableColors={availableColors}
-      itemQuantity={itemQuantity}
-      onChange={handleChange}
-    />
-  ))
-  return <div className='colorTable'>{table}</div>
+  return (
+    <select id='sizes'>
+      <option value=''></option>
+      {options}
+    </select>
+  )
 }
 
 export default ColorTable
