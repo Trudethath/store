@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AppContext } from "../AppProvider"
 
-import { GoPrimitiveDot } from "react-icons/go"
 import { BiMessage } from "react-icons/bi"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import SizeTable from "./SizeTable"
@@ -17,7 +16,7 @@ function ItemDetails(props) {
   const [sliderValue, setSliderValue] = useState(1)
   const [maxSliderValue, setMaxSliderValue] = useState(5)
   const [sizeValue, setSizeValue] = useState(0)
-  const [colorValue, setColorValue] = useState(null)
+  const [colorValue, setColorValue] = useState("none")
 
   const [isColorActive, setIsColorActive] = useState(false)
   const [isSliderActive, setIsSliderActive] = useState(false)
@@ -47,7 +46,7 @@ function ItemDetails(props) {
 
   const handleAddToCart = (e) => {
     e.preventDefault()
-    if (colorValue !== "" && sliderValue !== 0 && sizeValue !== 0) {
+    if (colorValue !== "none" && sliderValue !== 0 && sizeValue !== 0) {
       const cartItem = {
         item: props.data,
         chosenParameters: {
@@ -78,7 +77,7 @@ function ItemDetails(props) {
       <div className='item-details'>
         <h5>{gender === "female" ? "Women's" : "Men's"}</h5>
         <h1>{model}</h1>
-        <h3 className='priceTag'>{price} $</h3>
+        <h3 className='priceTag'>${price}</h3>
         <form>
           <h4>Pick your size</h4>
           <SizeTable sizeArray={sizeArray} handleChange={handleChange} />
@@ -87,6 +86,7 @@ function ItemDetails(props) {
           <ColorTable isDisabled={!isColorActive} handleChange={handleChange} />
 
           <div className='slideContainer'>
+            <h4>Select quantity</h4>
             <input
               type='range'
               min='1'

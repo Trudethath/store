@@ -52,7 +52,7 @@ function Item(props) {
         <img src={require("../images/" + item.images.img1)} alt={item.model} />
         <div className='item-desc'>
           <h4>{item.model}</h4>
-          <span className='price'>{item.price} $</span>
+          <span className='price'>${item.price}</span>
         </div>
         <h5>size 38+</h5>
       </div>

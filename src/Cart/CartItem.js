@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import { BsX } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../AppProvider"
 
 function CartItem(props) {
-  const { model, gender, release_year, price, onSale, images, quantity } =
-    props.item.item
+  const { model, gender, price, images } = props.item.item
   const { chosenParameters } = props.item // size, color, quantity
   const { removeItemFromCart } = useContext(AppContext)
   let navigate = useNavigate()
@@ -19,7 +18,7 @@ function CartItem(props) {
       <img src={require("../images/" + images.img1)} alt={model} />
       <div>
         <h3>
-          {model} - {price} $
+          {model} - ${price}
         </h3>
         <h5>{gender === "female" ? "Women's" : "Men's"}</h5>
         <h4>
@@ -35,7 +34,7 @@ function CartItem(props) {
       </div>
       <div>
         <h3 className='total'>
-          <b>Total: {price * chosenParameters.quantity} $</b>
+          <b>Total: ${(price * chosenParameters.quantity).toFixed(2)}</b>
         </h3>
       </div>
       <div className='clickable'>

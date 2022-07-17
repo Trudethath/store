@@ -1,10 +1,8 @@
-import React, { useContext } from "react"
-import { AppContext } from "../AppProvider"
+import React from "react"
 import CartItem from "./CartItem"
 
-function CartItems() {
-  const { cartItems } = useContext(AppContext)
-
+function CartItems(props) {
+  const { cartItems } = props
   const mapCartItems = cartItems.map((item, index) => {
     return <CartItem key={index} item={item} />
   })

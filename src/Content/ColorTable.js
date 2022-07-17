@@ -11,7 +11,7 @@ function ColorTable(props) {
 
   return (
     <select id='colorTable' disabled={isDisabled} onChange={handleChange}>
-      <option value=''></option>
+      <option value='none'></option>
       {options}
     </select>
   )

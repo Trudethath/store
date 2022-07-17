@@ -1,11 +1,9 @@
 import WishlistTable from "./WishlistTable"
-import AddItemsToCart from "./AddItemsToCart"
 import { AppContext } from "../AppProvider"
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 
 function WishlistLayout() {
   const { wishlistArray } = useContext(AppContext)
-  // const [allSelectedItems, setAllSelectedItems] = useState([])
 
   return (
     <div>
@@ -13,7 +11,6 @@ function WishlistLayout() {
         <h2>My wishlist</h2>
         <div className='wishlist-container'>
           <WishlistTable wishlistArray={wishlistArray} />
-          <AddItemsToCart />
         </div>
       </div>
     </div>
