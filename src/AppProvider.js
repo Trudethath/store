@@ -72,6 +72,7 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         cartItems,
+        setCartItems,
         wishlistArray,
         handleWishlistArray,
         handleCartItems,

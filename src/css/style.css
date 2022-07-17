@@ -1079,4 +1079,40 @@ ul li {
 .info-popup .lower > * {
   margin-top: 4px;
 }
+
+.invoice-container {
+  width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.invoice-container .green {
+  color: #43a143;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.invoice-container .green i {
+  font-size: 3em;
+}
+
+.invoice-container span.link {
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.invoice-container h1 {
+  font-size: 2.5em;
+  margin: 15px 0;
+}
+
+.invoice-container h4 {
+  margin-top: 50px;
+}
+
+.invoice-container .return {
+  margin-top: 150px;
+}
 /*# sourceMappingURL=style.css.map */

@@ -1,7 +1,26 @@
 import axios from "axios"
+import URLS from "../utils/URLS"
+import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { AppContext } from "../AppProvider"
 
 function Buy(props) {
   const { cartItems } = props
+  const { setCartItems } = useContext(AppContext)
+  let navigate = useNavigate()
+
+  let products_total = 0
+  let shipping = 0
+  let payment = 0
+  let vat = 23
+
+  cartItems.forEach((elem) => {
+    products_total += elem.item.price * elem.chosenParameters.quantity
+  })
+
+  let subtotal = products_total + shipping + payment
+
+  const total = (subtotal * parseFloat(`1.${vat}`)).toFixed(2)
 
   const updateItemInDb = (model, params, fetchedItem) => {
     console.log("update item", model)
@@ -120,20 +139,51 @@ function Buy(props) {
       const model = elem.item.model
       const params = elem.chosenParameters
       fetchByModel(model, params)
-      // validateIfAvaiable(model, params)
     })
+    if (createInvoice()) {
+      const invoiceData = {
+        cartItems: cartItems,
+        price_summary: {
+          shipping: shipping,
+          payment: payment,
+          vat: vat,
+          products_total: products_total,
+          subtotal: subtotal,
+          total: total,
+        },
+      }
+      setCartItems([]) //clearing cart
+      navigate("/invoice", { state: { invoiceData } })
+    }
   }
 
-  let products_total = 0
-  let shipping = 0
-  let payment = 0
-  let vat = 23
+  const createInvoice = () => {
+    console.log("create invoice")
+    const invoice = {
+      models: "asdas",
+      shipping: shipping,
+      payment: payment,
+      subtotal: subtotal,
+      vat: vat,
+      total: products_total,
+    }
 
-  cartItems.forEach((elem) => {
-    products_total += elem.item.price * elem.chosenParameters.quantity
-  })
+    console.log(post_create_invoice(invoice))
+    return true // only temporary
+  }
 
-  let subtotal = products_total + shipping + payment
+  const post_create_invoice = (invoice) => {
+    console.log(URLS.create_invoice_url)
+    return axios
+      .post(URLS.create_invoice_url, invoice)
+      .then((response) => {
+        return response
+      })
+      .catch((error) => {
+        return error
+      })
+  }
+
   return (
     <div className='cart-summary'>
       <h3>Total amount</h3>
@@ -162,10 +212,7 @@ function Buy(props) {
         </h4>
 
         <h4>
-          VAT ({vat}%):{" "}
-          <span className='price'>
-            ${(subtotal * parseFloat(`1.${vat}`)).toFixed(2)}
-          </span>
+          VAT ({vat}%): <span className='price'>${total}</span>
         </h4>
       </div>
       <input

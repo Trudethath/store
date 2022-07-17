@@ -13,6 +13,7 @@ import WomenItems from "./WomenItems"
 import MenItems from "./MenItems"
 import SaleItems from "./SaleItems"
 import NewItems from "./NewItems"
+import Invoice from "../Cart/Invoice"
 
 function Content() {
   return (
@@ -25,6 +26,7 @@ function Content() {
       <Route path='/all' element={<AllItems />} />
       <Route path='/signIn' element={<LogInTemplate />} />
       <Route path='/signUp' element={<SignUpTemplate />} />
+      <Route path='/invoice' element={<Invoice />} />
       <Route
         path='/wishlist'
         element={

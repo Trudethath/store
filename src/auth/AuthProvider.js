@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const post_signup = (user, callback) => {
+    console.log("post_signup")
     return axios
       .post(URLS.sign_up_url, user)
       .then((response) => {

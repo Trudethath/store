@@ -1,0 +1,34 @@
+.invoice-container {
+  width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+
+  .green {
+    color: rgb(67, 161, 67);
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    i {
+      font-size: 3em;
+    }
+  }
+
+  span.link {
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin: 15px 0;
+  }
+
+  h4 {
+    margin-top: 50px;
+  }
+
+  .return {
+    margin-top: 150px;
+  }
+}
