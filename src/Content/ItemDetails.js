@@ -13,7 +13,7 @@ function ItemDetails(props) {
     useContext(AppContext)
   const { user } = useContext(AuthContext)
 
-  const [sliderValue, setSliderValue] = useState(1)
+  const [sliderValue, setSliderValue] = useState(0)
   const [maxSliderValue, setMaxSliderValue] = useState(5)
   const [sizeValue, setSizeValue] = useState(0)
   const [colorValue, setColorValue] = useState("none")
@@ -29,7 +29,7 @@ function ItemDetails(props) {
 
   useEffect(() => {
     if (sizeValue !== 0) {
-      setSliderValue(1)
+      setSliderValue(0)
       setIsColorActive(true)
       setIsSliderActive(true)
       sizeArray.forEach((elem) => {
@@ -89,7 +89,7 @@ function ItemDetails(props) {
             <h4>Select quantity</h4>
             <input
               type='range'
-              min='1'
+              min='0'
               max={maxSliderValue}
               value={sliderValue}
               className='slider'
@@ -100,9 +100,15 @@ function ItemDetails(props) {
             <span>{sliderValue}</span>
           </div>
 
-          <button className='addToCart' onClick={handleAddToCart}>
-            Add to cart
-          </button>
+          {user ? (
+            <button className='addToCart' onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          ) : (
+            <button className='addToCart disabled' disabled>
+              You have to be logged in
+            </button>
+          )}
         </form>
 
         <span className='link'>

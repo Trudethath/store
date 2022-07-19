@@ -12,6 +12,15 @@
     }
   }
 
+  .red {
+    color: rgb(161, 67, 67);
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    i {
+      font-size: 3em;
+    }
+  }
+
   span.link {
     text-decoration: underline;
     cursor: pointer;

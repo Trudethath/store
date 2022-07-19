@@ -3,10 +3,12 @@ import URLS from "../utils/URLS"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { AppContext } from "../AppProvider"
+import { AuthContext } from "../auth/AuthProvider"
 
 function Buy(props) {
   const { cartItems } = props
   const { setCartItems } = useContext(AppContext)
+  const { user } = useContext(AuthContext)
   let navigate = useNavigate()
 
   let products_total = 0
@@ -96,7 +98,6 @@ function Buy(props) {
 
   const checkIfItemIsAvaiable = (model, params, fetchedItem) => {
     console.log("check avai", model)
-    console.log("fetched item: ", fetchedItem)
     // If item exists
     if (fetchedItem) {
       console.log("item exists")
@@ -129,43 +130,49 @@ function Buy(props) {
       console.log("item is avaiable", model)
       updateItemInDb(model, params, fetchedItem)
     } else {
-      console.log("Item is unavaiable")
+      console.log("Item is unavaiable", model)
+      alert(`item ${model} is unavaiable`)
     }
   }
 
   const handleCheckout = () => {
-    // console.log(cartItems)
-    cartItems.forEach((elem) => {
-      const model = elem.item.model
-      const params = elem.chosenParameters
-      fetchByModel(model, params)
-    })
-    if (createInvoice()) {
-      const invoiceData = {
-        cartItems: cartItems,
-        price_summary: {
-          shipping: shipping,
-          payment: payment,
-          vat: vat,
-          products_total: products_total,
-          subtotal: subtotal,
-          total: total,
-        },
+    if (cartItems.length !== 0) {
+      cartItems.forEach((elem) => {
+        const model = elem.item.model
+        const params = elem.chosenParameters
+        fetchByModel(model, params)
+      })
+      if (createInvoice()) {
+        const invoiceData = {
+          cartItems: cartItems,
+          price_summary: {
+            shipping: shipping,
+            payment: payment,
+            vat: vat,
+            products_total: products_total,
+            subtotal: subtotal,
+            total: total,
+          },
+        }
+        setCartItems([]) //clearing cart
+        const isOk = true
+        navigate("/invoice", { state: { invoiceData, isOk } })
       }
-      setCartItems([]) //clearing cart
-      navigate("/invoice", { state: { invoiceData } })
+    } else {
+      console.log("cart is empty")
     }
   }
 
   const createInvoice = () => {
     console.log("create invoice")
     const invoice = {
-      models: "asdas",
+      models: cartItems,
       shipping: shipping,
       payment: payment,
       subtotal: subtotal,
       vat: vat,
-      total: products_total,
+      total: total,
+      user: user,
     }
 
     console.log(post_create_invoice(invoice))
@@ -173,7 +180,7 @@ function Buy(props) {
   }
 
   const post_create_invoice = (invoice) => {
-    console.log(URLS.create_invoice_url)
+    console.log("post create invoice: ", invoice)
     return axios
       .post(URLS.create_invoice_url, invoice)
       .then((response) => {
@@ -220,6 +227,7 @@ function Buy(props) {
         className='checkout'
         value='Checkout'
         onClick={handleCheckout}
+        disabled={cartItems.length === 0 && true}
       />
     </div>
   )

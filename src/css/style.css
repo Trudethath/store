@@ -464,6 +464,10 @@ ul li {
   margin-top: 15px;
 }
 
+.item-details .disabled {
+  opacity: 0.3;
+}
+
 .item-details .availabilityDot {
   display: inline-block;
   vertical-align: middle;
@@ -888,6 +892,10 @@ ul li {
   cursor: pointer;
 }
 
+.cart-wrapper .cart-summary .checkout:disabled {
+  opacity: 0.3;
+}
+
 .wishlist-layout {
   width: 1500px;
   height: 80%;
@@ -1096,6 +1104,16 @@ ul li {
   font-size: 3em;
 }
 
+.invoice-container .red {
+  color: #a14343;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.invoice-container .red i {
+  font-size: 3em;
+}
+
 .invoice-container span.link {
   text-decoration: underline;
   cursor: pointer;
@@ -1114,5 +1132,10 @@ ul li {
 
 .invoice-container .return {
   margin-top: 150px;
+}
+
+.profile-container {
+  width: 1600px;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=style.css.map */

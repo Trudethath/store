@@ -84,5 +84,9 @@
       background-color: $red;
       cursor: pointer;
     }
+
+    .checkout:disabled {
+      opacity: 0.3;
+    }
   }
 }
