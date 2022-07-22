@@ -21,43 +21,8 @@ function LoginTemplate() {
   const navigate = useNavigate()
   const from = location.state?.from?.pathname || "/signIn"
 
-  const checkIfEmailIsValid = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  }
-
   const handleCheckbox = (e) => {
     setEnablePolicyCheckbox(!enablePolicyCheckbox)
-  }
-
-  const validateForm = () => {
-    console.log("validate form")
-    if (checkIfEmailIsValid(emailText)) {
-      setEmailValid(true)
-    } else {
-      setEmailValid(false)
-      console.log("email invalid")
-    }
-
-    if (loginText !== "" && loginText.length >= 3) {
-      setUsernameValid(true)
-    } else {
-      setUsernameValid(false)
-      console.log("login invalid")
-    }
-
-    if (passwordText !== "" && passwordText.length >= 6) {
-      setPasswordValid(true)
-    } else {
-      setPasswordValid(false)
-      console.log("pass invalid")
-    }
-
-    if (enablePolicyCheckbox !== false) {
-      setPolicyAccepted(true)
-    } else {
-      setPolicyAccepted(false)
-      console.log("policy invalid")
-    }
   }
 
   // Updates state with input texts
@@ -77,20 +42,45 @@ function LoginTemplate() {
         setPasswordVisibility(!isPasswordVisible)
         break
       case "submit":
-        console.log("submit")
-        validateForm()
+        // If every input is correct move forward
         if (
-          isEmailValid &&
-          isUsernameValid &&
-          isPasswordValid &&
-          policyAccepted
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailText) &&
+          loginText !== "" &&
+          loginText.length >= 3 &&
+          passwordText !== "" &&
+          passwordText.length >= 6 &&
+          enablePolicyCheckbox !== false
         ) {
           const user = {
             username: loginText,
             email: emailText,
             password: passwordText,
           }
+
           post_signup(user, () => navigate(from, { replace: true }))
+        }
+        // If inputs are incorrect show error messages
+        else {
+          if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailText)) {
+            setEmailValid(true)
+          } else {
+            setEmailValid(false)
+          }
+          if (loginText !== "" && loginText.length >= 3) {
+            setUsernameValid(true)
+          } else {
+            setUsernameValid(false)
+          }
+          if (passwordText !== "" && passwordText.length >= 6) {
+            setPasswordValid(true)
+          } else {
+            setPasswordValid(false)
+          }
+          if (enablePolicyCheckbox !== false) {
+            setPolicyAccepted(true)
+          } else {
+            setPolicyAccepted(false)
+          }
         }
         break
       default:

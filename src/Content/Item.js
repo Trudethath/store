@@ -46,13 +46,15 @@ function Item(props) {
           <i className={isWishlistAnimating ? "shake" : undefined}>
             {" "}
             <BsHeart
-              className='favorite-icon'
+              className='favorite-icon '
               onClick={() => handleClick("favorite")}
             />
           </i>
         )
       ) : (
-        <BsHeart className='favorite-icon disabled-icon' />
+        <i>
+          <BsHeart className='favorite-icon disabled-icon' />
+        </i>
       )}
 
       <div

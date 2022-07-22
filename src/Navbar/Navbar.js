@@ -43,12 +43,13 @@ const Navbar = () => {
 
   const userLoggedIn = (
     <span>
-      <Link to='profile'>
+      <Link to='profile' onClick={() => handleActiveNavTab("reset")}>
         <AiOutlineUser />
         Profile
       </Link>
       <span
         onClick={() => {
+          handleActiveNavTab("reset")
           signout(() => navigate(from, { replace: true }))
         }}
       >
@@ -68,10 +69,10 @@ const Navbar = () => {
       <div className='user-side'>
         {user ? userLoggedIn : userNotLoggedIn}
         <Link to='wishlist'>
-          <AiOutlineHeart />
+          <AiOutlineHeart onClick={() => handleActiveNavTab("reset")} />
         </Link>
         <Link to='cart'>
-          <BsCart2 />
+          <BsCart2 onClick={() => handleActiveNavTab("reset")} />
         </Link>
       </div>
     </nav>

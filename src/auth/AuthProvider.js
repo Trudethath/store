@@ -1,10 +1,29 @@
 import { createContext, useState } from "react"
 import axios from "axios"
 import URLS from "../utils/URLS"
+import { toast, Zoom } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+
+  const toastHandler = (status, message) => {
+    if (status === "error") {
+      toast.error(message, {
+        transition: Zoom,
+        autoClose: 2000,
+        position: toast.POSITION.TOP_CENTER,
+      })
+    } else if (status === "success") {
+      toast.success(message, {
+        transition: Zoom,
+        autoClose: 2000,
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+  }
 
   const signin = (username, callback) => {
     setUser(username)
@@ -34,12 +53,16 @@ const AuthProvider = ({ children }) => {
     return axios
       .post(URLS.sign_up_url, user)
       .then((response) => {
-        console.log("good")
+        toastHandler("success", "Successfully registered!")
         callback()
         return response
       })
       .catch((error) => {
-        console.log("bad")
+        console.log("asdasdasd", error)
+        toastHandler(
+          "error",
+          `Error:${error.response.status} - User already exists!`
+        )
         return error
       })
   }
