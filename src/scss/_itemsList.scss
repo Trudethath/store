@@ -13,6 +13,7 @@
 }
 
 .item {
+  user-select: none;
   display: flex;
   width: 340px;
   height: 340px;
@@ -20,6 +21,14 @@
   padding: 10px;
   cursor: pointer;
   justify-content: center;
+
+  .item-image {
+    transition: all 0.2s ease-in;
+  }
+
+  .item-image:hover {
+    transform: scale(0.9);
+  }
 
   h5 {
     padding: 0 25px;
@@ -35,12 +44,12 @@
     }
   }
 
-  .favorite-icon {
+  i {
     position: absolute;
-    z-index: 11;
     font-size: 30px;
     top: 10px;
     right: 25px;
+    z-index: 11;
   }
 
   .disabled-icon {

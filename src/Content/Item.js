@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../AppProvider"
@@ -11,6 +11,7 @@ function Item(props) {
   let navigate = useNavigate()
   const { handleWishlistArray, wishlistArray } = useContext(AppContext)
   const { user } = useContext(AuthContext)
+  const [isWishlistAnimating, setIsWishlistAnimating] = useState(false)
 
   const handleClick = (option) => {
     switch (option) {
@@ -18,6 +19,10 @@ function Item(props) {
         navigate(`/itemDetails/${item.model}`)
         break
       case "favorite":
+        setIsWishlistAnimating(true)
+        setTimeout(() => {
+          setIsWishlistAnimating(false)
+        }, 1000)
         handleWishlistArray(item)
         break
       default:
@@ -30,15 +35,21 @@ function Item(props) {
       {item.onSale ? <span className='sale'>SALE</span> : null}
       {user ? (
         wishlistArray.some((e) => e.itemId === item.itemId) ? (
-          <BsHeartFill
-            className='favorite-icon icon-active'
-            onClick={() => handleClick("favorite")}
-          />
+          <i className={isWishlistAnimating ? "shake" : undefined}>
+            {" "}
+            <BsHeartFill
+              className='favorite-icon icon-active'
+              onClick={() => handleClick("favorite")}
+            />
+          </i>
         ) : (
-          <BsHeart
-            className='favorite-icon'
-            onClick={() => handleClick("favorite")}
-          />
+          <i className={isWishlistAnimating ? "shake" : undefined}>
+            {" "}
+            <BsHeart
+              className='favorite-icon'
+              onClick={() => handleClick("favorite")}
+            />
+          </i>
         )
       ) : (
         <BsHeart className='favorite-icon disabled-icon' />
@@ -49,7 +60,11 @@ function Item(props) {
           handleClick("item")
         }}
       >
-        <img src={require("../images/" + item.images.img1)} alt={item.model} />
+        <img
+          className='item-image'
+          src={require("../images/" + item.images.img1)}
+          alt={item.model}
+        />
         <div className='item-desc'>
           <h4>{item.model}</h4>
           <span className='price'>${item.price}</span>

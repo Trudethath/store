@@ -7,7 +7,11 @@ function CartItems(props) {
     return <CartItem key={index} item={item} />
   })
 
-  return <div className='cart-flexbox'>{mapCartItems}</div>
+  return (
+    <div className='cart-flexbox'>
+      {mapCartItems.length !== 0 ? mapCartItems : "No items in cart"}
+    </div>
+  )
 }
 
 export default CartItems

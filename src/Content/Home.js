@@ -20,24 +20,6 @@ const images = [
 ]
 
 function Home() {
-  // const { items } = useContext(AppContext)
-  // // this year's collection
-  // const newestItems = items.filter((item) => {
-  //   return item.release_year === new Date().getFullYear()
-  // })
-
-  // const itemsOnSale = items.filter((item) => {
-  //   return item.onSale
-  // })
-
-  // const carouselItemsNew = newestItems.map((item) => {
-  //   return <Item key={item.id} item={item} />
-  // })
-
-  // const carouselItemsSale = itemsOnSale.map((item) => {
-  //   return <Item key={item.id} item={item} />
-  // })
-
   const [data, setData] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [error, setError] = useState(null)

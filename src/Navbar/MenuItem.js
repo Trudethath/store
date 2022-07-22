@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom"
 function MenuItem(props) {
-  const { item } = props
+  const { item, activeElement, handleActiveNavTab } = props
   return (
     <li>
-      <Link to={item.url}>{item.title}</Link>
+      <span
+        className={activeElement === item.title ? "navbarActiveTab" : undefined}
+        onClick={() => handleActiveNavTab(item.title)}
+      >
+        <Link to={item.url}>{item.title}</Link>
+      </span>
     </li>
   )
 }

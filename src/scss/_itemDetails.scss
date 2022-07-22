@@ -4,8 +4,29 @@
   display: grid;
   grid-template-columns: 60% 40%;
 }
+.notActive {
+  opacity: 0.3;
+  pointer-events: none;
+}
 
 .item-details {
+  .grey,
+  .green,
+  .red {
+    vertical-align: middle;
+  }
+  .grey {
+    color: grey;
+  }
+
+  .green {
+    color: rgb(20, 95, 20);
+  }
+
+  .red {
+    color: rgb(129, 27, 27);
+  }
+
   h4 {
     margin-top: 10px;
   }
@@ -14,8 +35,57 @@
     letter-spacing: 2px;
     margin: 10px 0;
   }
-  .slideContainer {
+  .quantityContainer {
+    &.notActive {
+      opacity: 0.1;
+    }
+
     margin-top: 15px;
+    h4 {
+      margin-bottom: 5px;
+    }
+
+    .sizeInput {
+      border: 1px solid black;
+      background-color: rgb(255, 255, 255);
+      width: 30px;
+      height: 30px;
+      transition: 0.1s;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      &:hover {
+        background-color: rgba(237, 237, 237, 0.418);
+      }
+
+      &:disabled {
+        opacity: 0.2;
+      }
+    }
+
+    #sizeValue {
+      height: 30px;
+      border: none;
+      width: 60px;
+      text-align: center;
+      outline: none;
+      font-size: 20px;
+
+      // for removing +/- arrows
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    // Removes arrows from input type number
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
   }
 
   .disabled {
@@ -27,81 +97,8 @@
     vertical-align: middle;
   }
 
-  .sizeTable {
-    margin: 15px 0;
-    width: 300px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    row-gap: 3px;
-    column-gap: 3px;
-  }
-
-  .sizeTable input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
-  }
-
-  .sizeTable label {
-    display: block;
-    background-color: $grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 40px;
-    cursor: pointer;
-
-    &.deactivated {
-      opacity: 0.5;
-      cursor: default;
-    }
-  }
-
-  .sizeTable input[type="radio"]:checked + .sizeChunk {
-    border: 1px solid black;
-  }
-
-  .colorTable {
-    margin: 15px 0;
-    width: 300px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    row-gap: 3px;
-    column-gap: 3px;
-  }
-
-  .colorTable input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
-  }
-
-  .colorTable label {
-    display: block;
-    background-color: $grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 40px;
-    cursor: pointer;
-
-    &.deactivated {
-      opacity: 0.5;
-      cursor: default;
-    }
-  }
-
-  .colorTable input[type="radio"]:checked + .colorChunk {
-    border: 1px solid black;
-  }
-
-  #quantityPicker {
-    margin-left: 7px;
-    width: 55px;
-    height: 35px;
-    font-size: 20px;
+  select {
+    width: 60px;
   }
 
   .addToCart {
@@ -115,9 +112,14 @@
     height: 60px;
     background-color: $red;
     cursor: pointer;
+    transition: all 0.2s ease-in;
     &.deactivated {
       opacity: 0.5;
       cursor: default;
+    }
+
+    &:active {
+      transform: scale(0.94);
     }
   }
 
@@ -126,14 +128,21 @@
     margin-top: 20px;
     text-decoration: underline;
     cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    i {
+      position: absolute;
+    }
+
+    span {
+      position: relative;
+      left: 35px;
+    }
   }
 
   i {
     font-size: 25px;
     margin-right: 15px;
-    .message {
-      transform: scale(-1, 1);
-    }
     .favorite {
       color: $red;
     }
@@ -150,6 +159,10 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin-right: 150px;
+
+  & {
+    cursor: zoom-in;
+  }
 
   & :first-child {
     width: 100%;

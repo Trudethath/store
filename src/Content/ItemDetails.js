@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AppContext } from "../AppProvider"
 
-import { BiMessage } from "react-icons/bi"
+import { RiMessage3Line } from "react-icons/ri"
+import { GoPrimitiveDot } from "react-icons/go"
+
 import { BsHeart, BsHeartFill } from "react-icons/bs"
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+
 import SizeTable from "./SizeTable"
 import ColorTable from "./ColorTable"
 import { AuthContext } from "../auth/AuthProvider"
@@ -12,14 +16,22 @@ function ItemDetails(props) {
   const { handleWishlistArray, wishlistArray, handleCartItems } =
     useContext(AppContext)
   const { user } = useContext(AuthContext)
-
-  const [sliderValue, setSliderValue] = useState(0)
-  const [maxSliderValue, setMaxSliderValue] = useState(5)
   const [sizeValue, setSizeValue] = useState(0)
+  const [quantityValue, setQuantityValue] = useState(0)
   const [colorValue, setColorValue] = useState("none")
 
+  const [maxQuantityValue, setMaxQuantityValue] = useState(0)
+
+  // Validation states
   const [isColorActive, setIsColorActive] = useState(false)
-  const [isSliderActive, setIsSliderActive] = useState(false)
+  const [isQuantityActive, setIsQuantityActive] = useState(false)
+  const [isIncreaseQtActive, setIsIncreaseQtActive] = useState(false)
+  const [isDecreaseQtActive, setIsDecreaseQtActive] = useState(false)
+  const [isQtDivActive, setIsQtDivActive] = useState(false)
+
+  // animation
+
+  const [isWishListAnimating, setIsWishListAnimating] = useState(false)
 
   let sizeArray = []
 
@@ -27,32 +39,50 @@ function ItemDetails(props) {
     sizeArray.push([key.replace(/[^0-9]/g, ""), quantity[key]])
   })
 
+  // Determines when increase and decrease buttons are active
+  useEffect(() => {
+    if (quantityValue === maxQuantityValue) {
+      setIsIncreaseQtActive(false)
+    } else {
+      setIsIncreaseQtActive(true)
+    }
+    if (quantityValue === 0) {
+      setIsDecreaseQtActive(false)
+    } else {
+      setIsDecreaseQtActive(true)
+    }
+  }, [quantityValue])
+
   useEffect(() => {
     if (sizeValue !== 0) {
-      setSliderValue(0)
+      setQuantityValue(1)
       setIsColorActive(true)
-      setIsSliderActive(true)
+      setIsQtDivActive(true)
+      setIsQuantityActive(true)
       sizeArray.forEach((elem) => {
         if (parseInt(elem[0]) === sizeValue) {
-          setMaxSliderValue(parseInt(elem[1]))
+          if (elem[1] === 0) setQuantityValue(0)
+          setMaxQuantityValue(parseInt(elem[1]))
         }
       })
     } else {
-      setSliderValue(0)
+      setIsQuantityActive(false)
       setIsColorActive(false)
-      setIsSliderActive(false)
+      setIsQtDivActive(false)
+      setQuantityValue(0)
+      setMaxQuantityValue(0)
     }
   }, [sizeValue])
 
   const handleAddToCart = (e) => {
     e.preventDefault()
-    if (colorValue !== "none" && sliderValue !== 0 && sizeValue !== 0) {
+    if (colorValue !== "none" && sizeValue !== 0) {
       const cartItem = {
         item: props.data,
         chosenParameters: {
           size: sizeValue,
           color: colorValue,
-          quantity: sliderValue,
+          quantity: quantityValue,
         },
       }
       handleCartItems(cartItem)
@@ -61,15 +91,61 @@ function ItemDetails(props) {
     }
   }
 
-  const handleClick = () => {
-    handleWishlistArray(props.data)
+  const handleClick = (e, value) => {
+    e.preventDefault()
+    setQuantityValue(quantityValue + value)
   }
 
   const handleChange = (e) => {
     const { id, value } = e.target
-    if (id === "sizeTable") setSizeValue(parseInt(value))
-    if (id === "colorTable") setColorValue(value)
-    if (id === "slider") setSliderValue(value)
+    switch (id) {
+      case "sizeTable":
+        setSizeValue(parseInt(value))
+        break
+      case "colorTable":
+        setColorValue(value)
+        break
+      case "sizeValue":
+        if (value !== "") {
+          if (value <= maxQuantityValue && value >= 0) {
+            setQuantityValue(parseInt(value))
+          } else setQuantityValue(maxQuantityValue)
+        }
+
+        break
+      default:
+        break
+    }
+  }
+
+  const handleAddToWishlist = () => {
+    setIsWishListAnimating(true)
+    setTimeout(() => {
+      setIsWishListAnimating(false)
+    }, 1000)
+    handleWishlistArray(props.data)
+  }
+
+  const availabilityDot = () => {
+    if (sizeValue === 0)
+      return (
+        <span>
+          <GoPrimitiveDot className='grey' />
+        </span>
+      )
+    else if (maxQuantityValue !== 0)
+      return (
+        <span>
+          <GoPrimitiveDot className='green' /> Item is avaiable
+        </span>
+      )
+    else
+      return (
+        <span>
+          <GoPrimitiveDot className='red' />
+          Item is unavaiable
+        </span>
+      )
   }
 
   const details = (
@@ -79,34 +155,48 @@ function ItemDetails(props) {
         <h1>{model}</h1>
         <h3 className='priceTag'>${price}</h3>
         <form>
+          <span>{availabilityDot()}</span>
           <h4>Pick your size</h4>
+
           <SizeTable sizeArray={sizeArray} handleChange={handleChange} />
 
           <h4>Pick your color</h4>
           <ColorTable isDisabled={!isColorActive} handleChange={handleChange} />
 
-          <div className='slideContainer'>
-            <h4>Select quantity</h4>
-            <input
-              type='range'
-              min='0'
-              max={maxSliderValue}
-              value={sliderValue}
-              className='slider'
-              id='slider'
-              onChange={handleChange}
-              disabled={!isSliderActive}
-            />
-            <span>{sliderValue}</span>
+          <div className={!isQtDivActive ? "notActive" : undefined}>
+            <div className='quantityContainer'>
+              <h4>Pick quantity</h4>
+              <button
+                className='sizeInput'
+                onClick={(event) => handleClick(event, -1)}
+                disabled={!isDecreaseQtActive}
+              >
+                <AiOutlineMinus />
+              </button>
+              <input
+                type='number'
+                value={quantityValue}
+                onChange={handleChange}
+                disabled={!isQuantityActive}
+                id='sizeValue'
+              />
+              <button
+                className='sizeInput'
+                onClick={(event) => handleClick(event, 1)}
+                disabled={!isIncreaseQtActive}
+              >
+                <AiOutlinePlus />
+              </button>
+            </div>
           </div>
 
           {user ? (
             <button className='addToCart' onClick={handleAddToCart}>
-              Add to cart
+              <span>Add to cart</span>
             </button>
           ) : (
             <button className='addToCart disabled' disabled>
-              You have to be logged in
+              <span>You have to be logged in</span>
             </button>
           )}
         </form>
@@ -114,24 +204,30 @@ function ItemDetails(props) {
         <span className='link'>
           <div>
             <i>
-              <BiMessage className='message' />
+              <RiMessage3Line className='message' />
             </i>
             <span>Need help?</span>
           </div>
         </span>
 
         {user && (
-          <span className='link' onClick={handleClick}>
+          <span className='link' onClick={handleAddToWishlist}>
             {wishlistArray.some((e) => e.itemId === itemId) ? (
               <div>
-                <i>
+                <i
+                  id='wishlistIcon'
+                  className={isWishListAnimating ? "shake" : undefined}
+                >
                   <BsHeartFill className='favorite' />
                 </i>
                 <span>Add to wishlist</span>
               </div>
             ) : (
               <div>
-                <i>
+                <i
+                  id='wishlistIcon'
+                  className={isWishListAnimating ? "shake" : undefined}
+                >
                   <BsHeart />
                 </i>
                 <span>Add to wishlist</span>

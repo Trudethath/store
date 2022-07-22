@@ -1,0 +1,32 @@
+.shake {
+  animation-name: shake;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  transform: rotate(0);
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.navbarActiveTab {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.errorShake {
+  animation-name: errorShake;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}

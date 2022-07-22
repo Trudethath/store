@@ -30,26 +30,31 @@ function LoginTemplate() {
   }
 
   const validateForm = () => {
-    if (checkIfEmailIsValid(emailText)) setEmailValid(true)
-    else {
+    console.log("validate form")
+    if (checkIfEmailIsValid(emailText)) {
+      setEmailValid(true)
+    } else {
       setEmailValid(false)
       console.log("email invalid")
     }
 
-    if (loginText !== "" && loginText.length >= 3) setUsernameValid(true)
-    else {
+    if (loginText !== "" && loginText.length >= 3) {
+      setUsernameValid(true)
+    } else {
       setUsernameValid(false)
       console.log("login invalid")
     }
 
-    if (passwordText !== "" && passwordText.length >= 6) setPasswordValid(true)
-    else {
+    if (passwordText !== "" && passwordText.length >= 6) {
+      setPasswordValid(true)
+    } else {
       setPasswordValid(false)
       console.log("pass invalid")
     }
 
-    if (enablePolicyCheckbox !== false) setPolicyAccepted(true)
-    else {
+    if (enablePolicyCheckbox !== false) {
+      setPolicyAccepted(true)
+    } else {
       setPolicyAccepted(false)
       console.log("policy invalid")
     }
@@ -72,6 +77,7 @@ function LoginTemplate() {
         setPasswordVisibility(!isPasswordVisible)
         break
       case "submit":
+        console.log("submit")
         validateForm()
         if (
           isEmailValid &&
@@ -111,8 +117,10 @@ function LoginTemplate() {
               placeholder='e-mail address'
               value={emailText}
               onChange={handleInputs}
-              className={`${!isEmailValid ? "invalid" : ""}`}
             />
+            {!isEmailValid ? (
+              <span className='errorMessage'>e-mail is incorrect !</span>
+            ) : null}
             <label htmlFor='username'>
               <h2>Username</h2>
             </label>
@@ -122,8 +130,12 @@ function LoginTemplate() {
               placeholder='username'
               value={loginText}
               onChange={handleInputs}
-              className={`${!isUsernameValid ? "invalid" : ""}`}
             />
+            {!isUsernameValid ? (
+              <span className='errorMessage'>
+                Username is incorrect ! <p>(min 3 characters)</p>
+              </span>
+            ) : null}
 
             <label htmlFor='password'>
               <h2>Password</h2>
@@ -134,8 +146,12 @@ function LoginTemplate() {
               placeholder='password'
               value={passwordText}
               onChange={handleInputs}
-              className={`${!isPasswordValid ? "invalid" : ""}`}
             />
+            {!isPasswordValid ? (
+              <span className='errorMessage'>
+                Password is incorrect ! <p>(min 6 characters)</p>
+              </span>
+            ) : null}
             <button
               className='change-password-visibility'
               onClick={handleInputs}
@@ -162,6 +178,12 @@ function LoginTemplate() {
                 defaultChecked={enablePolicyCheckbox}
                 onClick={handleCheckbox}
               />
+              {!policyAccepted ? (
+                <span className='errorMessage'>
+                  {" "}
+                  You must accept our Terms & Conditions
+                </span>
+              ) : null}
               <span>
                 I accept the <u>Terms & Conditions</u> and{" "}
                 <u>Privacy Policy.</u>

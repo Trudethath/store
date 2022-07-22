@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import MenuItems from "./MenuItems"
 import MenuItem from "./MenuItem"
@@ -11,9 +11,27 @@ const Navbar = () => {
   const { signout, user } = useContext(AuthContext)
   const navigate = useNavigate()
   const from = location.state?.from?.pathname || "/"
+
+  const [activeElement, setActiveElement] = useState(null)
+
+  const handleActiveNavTab = (title) => {
+    if (title === "reset") {
+      setActiveElement(null)
+    } else {
+      setActiveElement(title)
+    }
+  }
+
   // Generates menu from MenuItems.js file
   const menuItems = MenuItems.map((item) => {
-    return <MenuItem key={item.id} item={item} />
+    return (
+      <MenuItem
+        key={item.id}
+        item={item}
+        activeElement={activeElement}
+        handleActiveNavTab={handleActiveNavTab}
+      />
+    )
   })
 
   const userNotLoggedIn = (
@@ -43,14 +61,12 @@ const Navbar = () => {
     <nav className='navbar-container'>
       <h1>
         <Link to='/' className='navbar-icon'>
-          <GiDonkey />
+          <GiDonkey onClick={() => handleActiveNavTab("reset")} />
         </Link>
       </h1>
       <ul className='menu-items'>{menuItems}</ul>
       <div className='user-side'>
         {user ? userLoggedIn : userNotLoggedIn}
-        {/* {userLoggedIn}
-        {userNotLoggedIn} */}
         <Link to='wishlist'>
           <AiOutlineHeart />
         </Link>
